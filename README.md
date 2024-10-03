@@ -14,11 +14,11 @@
   - Toggle the visibility of the clock, search bar, and quick links.
 - **Local Storage Persistence**: Custom settings and links are saved locally, so they persist even after the page is refreshed or the browser is closed.
 
-## Demo
+## Example
 
 Here's an example of what the interface looks like:
 
-<div style="display: flex; gap: 10px;">
+<div style="display: flex; gap: 20px;">
   <img src="https://addons.mozilla.org/user-media/previews/full/306/306013.png?modified=1727639141" alt="Preview of the startpage extension" width="300"/>
   <img src="https://addons.mozilla.org/user-media/previews/full/306/306014.png?modified=1727639142" alt="Example image of Startpage 2" width="300"/>
 </div>
