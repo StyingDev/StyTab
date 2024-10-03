@@ -18,9 +18,10 @@
 
 Here's an example of what the interface looks like:
 
-<img src="https://addons.mozilla.org/user-media/previews/full/306/306013.png?modified=1727639141" alt="Preview of the startpage extension" width="300"/>
-
-![Example image of Startpage 2](https://addons.mozilla.org/user-media/previews/full/306/306014.png?modified=1727639142)
+<div style="display: flex; gap: 10px;">
+  <img src="https://addons.mozilla.org/user-media/previews/full/306/306013.png?modified=1727639141" alt="Preview of the startpage extension" width="300"/>
+  <img src="https://addons.mozilla.org/user-media/previews/full/306/306014.png?modified=1727639142" alt="Example image of Startpage 2" width="300"/>
+</div>
 
 ### Usage
 
