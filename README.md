@@ -1,4 +1,4 @@
-# StyTab Startpage Extension
+# StyTab Startpage Extension 🌐📑
 
 **StyTab** is a customizable startpage extension designed to give users quick access to their favorite websites, a personalized search experience, and a dynamic clock display. With settings to configure the background, search engine, time format, and visibility of elements like quick links and the search bar, StyTab makes your startpage both functional and tailored to your preferences.
 
@@ -18,7 +18,7 @@
 
 Here's an example of what the interface looks like:
 
-<div style="display: flex; padding: 20px;">
+<div style="display: flex; gap: 200px;">
   <img src="https://addons.mozilla.org/user-media/previews/full/306/306013.png?modified=1727639141" alt="Preview of the startpage extension" width="300"/>
   <img src="https://addons.mozilla.org/user-media/previews/full/306/306014.png?modified=1727639142" alt="Example image of Startpage 2" width="300"/>
 </div>
