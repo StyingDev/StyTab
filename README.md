@@ -1,3 +1,10 @@
+
+| Browser                              | Download                                                                                                                                                                |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| chromium-based (chrome, edge, brave) | Not Available |
+| firefox-based (firefox, floorp, zen) | [<img src="./assets/download-firefox.svg" height="53" alt="Firefox Download">](https://addons.mozilla.org/en-US/firefox/addon/mtab)                            |
+
+
 # StyTab Startpage Extension 🌐📑
 
 **StyTab** is a customizable, easy-to-use startpage extension that makes your browser home more functional and personal. Quickly access your favorite websites, enjoy a sleek search experience, and always know the time with a dynamic clock. Plus, StyTab is highly configurable—set backgrounds, search engines, and more to create your perfect startpage!
