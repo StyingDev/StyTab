@@ -1,8 +1,8 @@
 
 | Browser                              | Download                                                                                                                                                                |
 | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| chromium-based (chrome, edge, brave) | Not Available |
-| firefox-based (firefox, floorp, zen) | [<img src="./Readme Assets/download-firefox.svg" height="53" alt="Firefox Download">](https://addons.mozilla.org/en-US/firefox/addon/stytab/)                            |
+| chromium-based (Chrome and Alternatives) | N/A |
+| Gecko-based (Firefox and Alternatives) | [<img src="./Readme Assets/download-firefox.svg" height="53" alt="Firefox Download">](https://addons.mozilla.org/en-US/firefox/addon/stytab/)                            |
 
 
 # StyTab Startpage Extension 🌐📑
