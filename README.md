@@ -1,7 +1,7 @@
 
 | Browser                              | Download                                                                                                                                                                |
 | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| chromium-based (Chrome and Alternatives) |     N/A |
+| Chromium-based (Chrome and Alternatives) |     N/A |
 | Gecko-based (Firefox and Alternatives) | [<img src="./Readme Assets/download-firefox.svg" height="53" alt="Firefox Download">](https://addons.mozilla.org/en-US/firefox/addon/stytab/)                            |
 
 
