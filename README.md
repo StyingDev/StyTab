@@ -53,7 +53,7 @@ Check out what StyTab looks like in action:
 
 Got an idea or found a bug? We welcome contributions! Submit a pull request or open an issue to help make StyTab even better.
 
-## Acknoledgements
+## Acknowledgments
 
 Thanks to [mtab](https://github.com/maxhu08/mtab) for inspirations.
 
