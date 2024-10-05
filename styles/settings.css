@@ -1,0 +1,136 @@
+/* Settings Icon */
+.settings {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* Settings Sidebar */
+.settings-sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px; 
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  padding: 20px;
+  border-radius: 0px 0px 0px 0px;
+  color: white;
+  z-index: 100;
+  transition: right 0.4s ease;
+  display: block; /* Always keep this block */
+}
+
+/* Active class to slide in the sidebar */
+.settings-sidebar.active {
+  right: 0; 
+  display: block; 
+}
+
+/* Close button styling */
+#close-settings {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Sidebar Input and Button Styles */
+.settings-sidebar label {
+  display: block;
+  margin: 15px 0 5px;
+}
+
+.settings-sidebar input[type="text"],
+.settings-sidebar select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: #444;
+  color: white;
+}
+
+.settings-sidebar button {
+  padding: 10px;
+  background-color: #00b894;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: calc(100% - 30px);
+}
+
+.settings-sidebar button:hover {
+  background-color: #009874;
+}
+
+
+/* Styling for toggle container */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.toggle-container label {
+  flex: 1;
+  color: #fff;
+  font-size: 16px;
+}
+
+
+/* Custom toggle switch style */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px; /*50*/
+  height: 26px; /*26*/
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #444;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #00b894;
+}
+
+input:checked + .slider:before {
+  transform: translateX(100px);
+}

@@ -1,0 +1,63 @@
+/* Search Bar Styling */
+input[type="text"] {
+  width: 400px; /* Default width for larger screens */
+  padding: 12px;
+  font-size: 18px;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, width 0.3s ease;
+  margin-bottom: 10px; /* Adds space below the search bar */
+}
+
+input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+input[type="submit"] {
+  padding: 12px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 25px;
+  background-color: #fff;
+  color: #333;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #ddd;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  /* For tablets and smaller screens */
+  input[type="text"] {
+    width: 80%; /* Adjust width for medium screens */
+    font-size: 16px; /* Slightly smaller font size */
+    padding: 10px; /* Reduce padding */
+  }
+
+  input[type="submit"] {
+    padding: 10px 15px; /* Adjust button padding */
+    font-size: 16px; /* Adjust font size */
+    margin-left: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* For mobile devices */
+  input[type="text"] {
+    width: 100%; /* Full width for small screens */
+    font-size: 14px; /* Smaller font size */
+    padding: 8px; /* Further reduce padding */
+  }
+
+  input[type="submit"] {
+    padding: 8px 12px; /* Smaller button padding */
+    font-size: 14px;
+    margin-left: 5px;
+  }
+}

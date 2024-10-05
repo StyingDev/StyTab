@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StyTab</title>
+  <link rel="icon" type="image/x-icon" href="icons/Dizzy.svg">
+  
+  <link rel="stylesheet" href="styles/animations.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/gradient.css">
+  <link rel="stylesheet" href="styles/quick-links.css">
+  <link rel="stylesheet" href="styles/search-bar.css">
+  <link rel="stylesheet" href="styles/settings.css">
+ 
+</head>
+<body>
+
+  <!-- Clock section -->
+  <div class="clock" id="clock">Loading time...</div>
+
+    <!-- Search box -->
+    <div class="search-box">
+      <form id="search-form" action="https://www.google.com/search" method="get">
+        <input type="text" id="search-query" name="q" placeholder="Search the web...">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+
+  <!-- Quick links section -->
+  <div class="quick-links" id="quick-links-section"></div>
+
+  <!-- Settings icon -->
+  <div class="settings" id="settings-icon">
+    <img src="icons/setting-icon.svg" alt="⚙" style="width: 25px; height: 25px;">
+  </div>
+
+  <!-- QuickLinks icon -->
+  <div class="quicklinks" id="quicklinks-icon">
+    <img src="icons/Newtab-icon.svg" alt="QuickLinks" style="width: 20px; height: 20px;">
+  </div>
+
+
+
+  <!-- Settings Sidebar -->
+  <div class="settings-sidebar" id="settings-sidebar">
+    <div class="settings" id="close-settings">
+      <img src="icons/Setting-close-icon.svg" alt="Close Settings" style="width: 24px; height: 24px;">
+    </div>
+  
+    <h2>Settings</h2>
+
+    <label for="greeting">Custom Greeting:</label>
+    <input type="text" id="greeting" placeholder="Hello!">
+
+
+    <label for="background">Background Image URL:</label>
+    <input type="text" id="background" placeholder="Background URL">
+    
+    <label for="search-engine">Search Engine:</label>
+    <select id="search-engine">
+        <option value="https://www.google.com/search">Google</option>
+        <option value="https://duckduckgo.com">DuckDuckGo</option>
+        <option value="https://www.bing.com/search">Bing</option>
+        <option value="https://search.yahoo.com/search">Yahoo</option>
+        <option value="https://www.qwant.com/">Qwant</option>
+        <option value="https://www.startpage.com/">StartPage</option>
+        <option value="https://www.yandex.com/search/">Yandex</option>
+        <option value="https://priv.au/search">Priv.au</option>
+    </select>
+
+    <label for="time-format">Time Format:</label>
+    <select id="time-format">
+        <option value="12">12-hour</option>
+        <option value="24">24-hour</option>
+    </select>
+
+    <div class="toggle-container">
+      <label for="toggle-time">Show Time:</label>
+      <label class="switch">
+          <input type="checkbox" id="toggle-time">
+          <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Styled toggle switch for search bar -->
+    <div class="toggle-container">
+        <label for="toggle-search">Show Search Bar:</label>
+        <label class="switch">
+            <input type="checkbox" id="toggle-search">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <div class="toggle-container">
+      <label for="toggle-quick-links">Show Quick Links:</label>
+      <label class="switch">
+          <input type="checkbox" id="toggle-quick-links">
+          <span class="slider"></span>
+      </label>
+    </div>
+
+
+    <button id="save-settings">Save</button>
+    
+  </div>
+
+
+  <!-- QuickLinks Sidebar -->
+  <div class="quicklinks-sidebar" id="quicklinks-sidebar">
+    <div class="quicklinks" id="close-quicklinks">
+        <img src="icons/Setting-close-icon.svg" alt="Close QuickLinks" style="width: 24px; height: 24px;">
+    </div>
+
+    <h2>QuickLinks</h2>
+
+    <label for="quicklink-name">Link Name:</label>
+    <input type="text" id="quicklink-name" placeholder="Link Name">
+
+    <label for="quicklink-url">Link URL:</label>
+    <input type="url" id="quicklink-url" placeholder="https://....">
+    
+    <button id="add-link-button">Add Link</button>
+
+    <!-- Quick links section -->
+    <div class="quick-links-sidebar" id="quick-links-sidebar"></div>
+
+    <p class="footer"><span id="github-link">Make sure to star it on GitHub!</span></p>
+
+  </div>
+  
+
+
+
+  
+  <div class="modal-overlay" id="modal-overlay"></div>
+  <script src="Scripts/clock.js"></script>
+  <script src="Scripts/settings.js"></script>
+  <script src="Scripts/quicklinks.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+/* Keyframes for animations */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideDown {
+  0% { transform: translateY(-50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Clock & H1 Animation */
+h1 {
+  animation: fadeIn 2s ease-in-out;
+}
+
+.clock {
+  font-size: 36px;
+  margin-bottom: 20px;
+  animation: slideDown 1.5s ease;
+}
+
+/* Quick Links Animation */
+.quick-links {
+  margin-top: 40px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.search-box {
+  margin-top: 20px;
+  animation: fadeIn 3s ease-in-out;
+}

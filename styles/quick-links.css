@@ -1,0 +1,259 @@
+/* Quick Links Styling */
+.quick-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.quick-links a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.quick-links-sidebar a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.quick-links-sidebar a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+
+/* Container for Quick Links */
+.quick-links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.quick-links-sidebar {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.quick-links a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+  margin-right: 10px;
+  width: calc(100% - 20px);
+}
+
+.quick-links-sidebar a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+  margin-right: 10px;
+  width: calc(100% - 20px);
+}
+
+/* Wrapper for each Quick Link and delete button */
+.quick-links div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.quick-links-sidebar div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+/* Style for the delete button */
+.quick-links .delete-link {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  transition: transform 0.2s ease;
+}
+
+.quick-links-sidebar .delete-link {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  transition: transform 0.2s ease;
+}
+
+.quick-links .delete-link:hover {
+  transform: scale(1.3); 
+}
+
+.quick-links-sidebar .delete-link:hover {
+  transform: scale(1.3); 
+}
+
+.quick-links .delete-link img {
+  width: 16px;
+  height: 16px;
+}
+
+.quick-links-sidebar .delete-link img {
+  width: 16px;
+  height: 16px;
+}
+
+
+/*---------------------------------------------------------------------------------------*/
+
+/* QuickLinks Icon */
+.quicklinks {
+  position: absolute;
+  bottom: 20px;
+  right: 20px; 
+  font-size: 24px;
+  cursor: pointer;
+  animation: fadeIn 2s ease-in-out;
+}
+/* QuickLinks Sidebar */
+.quicklinks-sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px; 
+  width: 250px;
+  height: 100%; 
+  max-height: 100vh; 
+  background-color: #333;
+  padding: 20px;
+  padding-bottom: 60px; 
+  border-radius: 0;
+  color: white;
+  z-index: 100;
+  transition: right 0.4s ease;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  scrollbar-width: thin; 
+}
+
+.quicklinks-sidebar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera: Hide scrollbar */
+}
+
+.quicklinks-sidebar:hover::-webkit-scrollbar {
+  display: block; 
+  width: 8px;
+}
+
+.quicklinks-sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(85, 85, 85, 0.8);
+  border-radius: 10px;
+}
+
+.quicklinks-sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(119, 119, 119, 0.8);
+}
+
+.quicklinks-sidebar input[type="text"],
+.quicklinks-sidebar input[type="url"],
+.quicklinks-sidebar select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: #444;
+  color: white;
+}
+
+.quicklinks-sidebar button {
+  padding: 10px;
+  background-color: #00b894;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: calc(100% - 0px);
+}
+
+.quicklinks-sidebar button:hover {
+  background-color: #009874;
+}
+
+/* Active class to slide in the sidebar */
+.quicklinks-sidebar.active {
+  right: 0; 
+}
+
+/* Close button styling for QuickLinks */
+#close-quicklinks {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  width: 24px;  
+  height: 24px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sidebar Link Styles */
+.quicklinks-sidebar a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin: 15px 0;
+  font-size: 18px;
+}
+
+.quicklinks-sidebar a:hover {
+  text-decoration: underline;
+}
+
+/* General Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Footer Styling */
+.footer {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  font-size: 15px;
+  margin-top: auto; 
+  color: grey; 
+  text-align: center; 
+  padding-bottom: 10px;
+}
+
+#github-link {
+  color: inherit; 
+  cursor: pointer; 
+  user-select: none; 
+}

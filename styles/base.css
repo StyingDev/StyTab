@@ -1,0 +1,28 @@
+/* Import Quicksand font */
+@font-face {
+  font-family: 'Quicksand';
+  src: url('../fonts/Quicksand.ttf') format('truetype');
+}
+
+
+/* Base Styles */
+body {
+  font-family: 'Quicksand', Arial, sans-serif;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  background-size: cover;
+  transition: background 1s ease-in-out;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+

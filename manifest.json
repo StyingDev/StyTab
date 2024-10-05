@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "StyTab",
+  "version": "1.0.6",
+  "description": "Stytab - A minimalist Startpage that meets your needs.",
+  "chrome_url_overrides": {
+    "newtab": "startpage.html"
+  },
+  "permissions": [
+    "tabs",
+    "scripting",
+    "activeTab"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "64": "icons/64.png",
+    "96": "icons/96.png"  
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/Dizzy.svg"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "o2860bs4m@mozmail.com"
+    }
+  }
+}
