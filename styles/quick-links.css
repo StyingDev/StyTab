@@ -7,14 +7,16 @@
   padding: 10px 20px;
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.1);
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .quick-links a:hover {
   background-color: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
+  transform: scale(1.1); 
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
 }
 
+/* Quick Links Sidebar Styling */
 .quick-links-sidebar a {
   margin: 0 15px;
   text-decoration: none;
@@ -23,12 +25,13 @@
   padding: 10px 20px;
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.1);
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .quick-links-sidebar a:hover {
   background-color: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
+  transform: scale(1.06); 
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
 }
 
 
@@ -170,6 +173,7 @@
 .quicklinks-sidebar input[type="url"],
 .quicklinks-sidebar select {
   width: calc(100% - 20px);
+  font-size: 15px;
   padding: 10px;
   margin-top: 5px;
   margin-bottom: 15px;
@@ -180,6 +184,7 @@
 }
 
 .quicklinks-sidebar button {
+  font-size: 15px;
   padding: 10px;
   background-color: #00b894;
   border: none;
@@ -188,7 +193,7 @@
   margin-top: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: calc(100% - 0px);
+  width: 100%;
 }
 
 .quicklinks-sidebar button:hover {

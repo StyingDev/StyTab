@@ -51,6 +51,7 @@
 .settings-sidebar input[type="text"],
 .settings-sidebar select {
   width: calc(100% - 20px);
+  font-size: 15px;
   padding: 10px;
   margin-bottom: 15px;
   border-radius: 5px;
@@ -60,6 +61,7 @@
 }
 
 .settings-sidebar button {
+  font-size: 15px;
   padding: 10px;
   background-color: #00b894;
   border: none;
@@ -67,7 +69,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: calc(100% - 30px);
+  width: 100%;
 }
 
 .settings-sidebar button:hover {

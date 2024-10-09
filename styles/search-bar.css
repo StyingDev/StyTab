@@ -1,21 +1,25 @@
-/* Search Bar Styling */
-input[type="text"] {
-  width: 400px; /* Default width for larger screens */
+/* Search Bar Styling (for #search-query inside .search-box) */
+.search-box #search-query {
+  width: 400px;
   padding: 12px;
   font-size: 18px;
   border: none;
   border-radius: 25px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, width 0.3s ease;
-  margin-bottom: 10px; /* Adds space below the search bar */
+  transition: box-shadow 0.3s ease, width 0.3s ease, background-color 0.3s ease;
+  margin-bottom: 10px;
+  background-color: #fff;
 }
 
-input[type="text"]:focus {
+.search-box #search-query:hover,
+.search-box #search-query:focus {
   outline: none;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  background-color: #ddd;
 }
 
-input[type="submit"] {
+/* Search Button Styling (for submit button inside .search-box) */
+.search-box input[type="submit"] {
   padding: 12px 20px;
   font-size: 18px;
   border: none;
@@ -24,39 +28,39 @@ input[type="submit"] {
   color: #333;
   margin-left: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input[type="submit"]:hover {
+.search-box input[type="submit"]:hover,
+.search-box input[type="submit"]:focus {
   background-color: #ddd;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-  /* For tablets and smaller screens */
-  input[type="text"] {
-    width: 80%; /* Adjust width for medium screens */
-    font-size: 16px; /* Slightly smaller font size */
-    padding: 10px; /* Reduce padding */
+  .search-box #search-query {
+    width: 80%;
+    font-size: 16px;
+    padding: 10px;
   }
 
-  input[type="submit"] {
-    padding: 10px 15px; /* Adjust button padding */
-    font-size: 16px; /* Adjust font size */
+  .search-box input[type="submit"] {
+    padding: 10px 15px;
+    font-size: 16px;
     margin-left: 8px;
   }
 }
 
 @media (max-width: 480px) {
-  /* For mobile devices */
-  input[type="text"] {
-    width: 100%; /* Full width for small screens */
-    font-size: 14px; /* Smaller font size */
-    padding: 8px; /* Further reduce padding */
+  .search-box #search-query {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
   }
 
-  input[type="submit"] {
-    padding: 8px 12px; /* Smaller button padding */
+  .search-box input[type="submit"] {
+    padding: 8px 12px;
     font-size: 14px;
     margin-left: 5px;
   }
