@@ -19,14 +19,19 @@ document.addEventListener("DOMContentLoaded", function() {
     const clockElement = document.getElementById("clock"); // The clock display element
     const toggleTimeCheckbox = document.getElementById("toggle-time"); // Checkbox for toggling time visibility
 
+    // New elements for weather functionality
+    const toggleWeatherCheckbox = document.getElementById("toggle-weather"); // Checkbox for toggling weather
+    const weatherWidget = document.getElementById("weather-widget"); // Weather widget element
+
     // Variables to track changes
     let newBackground = '';
     let newSearchEngine = searchEngineSelect.value;
     let newGreeting = "Hello!";
-    let newSearchVisible = toggleSearchCheckbox.checked; // Initialize with checkbox state
-    let newQuickLinksVisible = toggleQuickLinksCheckbox.checked; // Initialize with checkbox state
-    let newTimeVisible = toggleTimeCheckbox.checked; // Initialize with checkbox state
+    let newSearchVisible = toggleSearchCheckbox.checked;
+    let newQuickLinksVisible = toggleQuickLinksCheckbox.checked; 
+    let newTimeVisible = toggleTimeCheckbox.checked; 
     let newTimeFormat = timeFormatSelect.value;
+    let newWeatherVisible = toggleWeatherCheckbox.checked; 
 
     // Toggle sidebar visibility
     settingsIcon.addEventListener("click", () => {
@@ -51,11 +56,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // Optionally toggle sidebar on escape key press
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
-            // Check if the sidebar is active and close it if so
             if (settingsSidebar.classList.contains("active")) {
                 closeSidebar();
             } else {
-                // If the sidebar is not active, open it
                 settingsSidebar.classList.add("active");
                 modalOverlay.classList.add("active");
                 document.body.classList.add("modal-active");
@@ -67,18 +70,19 @@ document.addEventListener("DOMContentLoaded", function() {
     const existingBackground = localStorage.getItem("background");
     const existingSearchEngine = localStorage.getItem("searchEngine");
     const existingGreeting = localStorage.getItem("greeting");
-    const existingTimeFormat = localStorage.getItem("timeFormat") || "12"; // Load existing time format
-    const searchBarVisible = localStorage.getItem("searchBarVisible") !== 'false'; // Convert to boolean
-    const quickLinksVisible = localStorage.getItem("quickLinksVisible") !== 'false'; // Convert to boolean
-    const timeVisible = localStorage.getItem("timeVisible") !== 'false'; // Convert to boolean
+    const existingTimeFormat = localStorage.getItem("timeFormat") || "12"; 
+    const searchBarVisible = localStorage.getItem("searchBarVisible") !== 'false'; 
+    const quickLinksVisible = localStorage.getItem("quickLinksVisible") !== 'false'; 
+    const timeVisible = localStorage.getItem("timeVisible") !== 'false'; 
+    const weatherVisible = localStorage.getItem("weatherVisible") !== 'false'; 
 
     // Display existing greeting if available
     if (existingGreeting) {
         newGreeting = existingGreeting;
         greetingElement.textContent = newGreeting;
-        document.getElementById("greeting").value = newGreeting; // Set the input field to existing value
+        document.getElementById("greeting").value = newGreeting; 
     } else {
-        greetingElement.textContent = "Hello!"; // Default greeting
+        greetingElement.textContent = "Hello!";
     }
 
     // Set time format select to existing value
@@ -89,9 +93,9 @@ document.addEventListener("DOMContentLoaded", function() {
         newBackground = existingBackground;
         document.body.style.backgroundImage = `url(${newBackground})`;
         backgroundInput.value = newBackground;
-        document.body.classList.remove("gradient-active"); // Remove gradient if custom background exists
+        document.body.classList.remove("gradient-active"); 
     } else {
-        document.body.classList.add("gradient-active"); // Show gradient if no custom background
+        document.body.classList.add("gradient-active"); 
     }
 
     // Set existing search engine
@@ -113,26 +117,31 @@ document.addEventListener("DOMContentLoaded", function() {
     clockElement.style.display = timeVisible ? 'block' : 'none'; // Hide or show clock
     toggleTimeCheckbox.checked = timeVisible;
 
+    // Set weather visibility
+    weatherWidget.style.display = weatherVisible ? 'block' : 'none'; // Set initial visibility
+    toggleWeatherCheckbox.checked = weatherVisible; // Set checkbox state
+
     // Only apply changes after pressing the save button
     saveButton.addEventListener("click", () => {
         // Get values from inputs
-        newBackground = backgroundInput.value.trim(); // Trim whitespace
-        newGreeting = document.getElementById("greeting").value.trim(); // Trim whitespace
-        newSearchEngine = searchEngineSelect.value; // Get the selected search engine
-        newSearchVisible = toggleSearchCheckbox.checked; // Get the search visibility
-        newQuickLinksVisible = toggleQuickLinksCheckbox.checked; // Get the quick links visibility
-        newTimeVisible = toggleTimeCheckbox.checked; // Get the time visibility
-        newTimeFormat = timeFormatSelect.value; // Get the selected time format
+        newBackground = backgroundInput.value.trim(); 
+        newGreeting = document.getElementById("greeting").value.trim();
+        newSearchEngine = searchEngineSelect.value; 
+        newSearchVisible = toggleSearchCheckbox.checked; 
+        newQuickLinksVisible = toggleQuickLinksCheckbox.checked; 
+        newTimeVisible = toggleTimeCheckbox.checked; 
+        newTimeFormat = timeFormatSelect.value; 
+        newWeatherVisible = toggleWeatherCheckbox.checked;
 
         // Apply background settings
         if (newBackground === "") {
-            document.body.style.backgroundImage = ''; // Clear the background image
-            document.body.classList.add("gradient-active"); // Add the gradient class
-            localStorage.removeItem("background"); // Remove background from localStorage
+            document.body.style.backgroundImage = ''; 
+            document.body.classList.add("gradient-active");
+            localStorage.removeItem("background"); 
         } else {
             localStorage.setItem("background", newBackground);
-            document.body.style.backgroundImage = `url(${newBackground})`; // Apply custom background
-            document.body.classList.remove("gradient-active"); // Remove gradient class if custom image is set
+            document.body.style.backgroundImage = `url(${newBackground})`;
+            document.body.classList.remove("gradient-active");
         }
 
         // Apply greeting settings
@@ -148,6 +157,10 @@ document.addEventListener("DOMContentLoaded", function() {
         searchBox.style.display = newSearchVisible ? 'block' : 'none';
         quickLinksDiv.style.display = newQuickLinksVisible ? 'block' : 'none';
         clockElement.style.display = newTimeVisible ? 'block' : 'none';
+
+        // Set weather visibility based on newWeatherVisible
+        weatherWidget.style.display = newWeatherVisible ? 'block' : 'none';
+        localStorage.setItem("weatherVisible", newWeatherVisible);
 
         // Save settings to localStorage
         localStorage.setItem("searchEngine", newSearchEngine);

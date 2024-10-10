@@ -1,0 +1,135 @@
+/* weather.css */
+.weather-widget {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column; 
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 100;
+}
+
+#weather-temperature {
+    font-size: 24px; 
+    color: #fff; 
+}
+
+#weather-description {
+    font-size: 16px;
+    color: #fff; 
+}
+
+/* Adjusted modal style for a popup look */
+.modal {
+    display: none; /* Hidden by default */
+    position: absolute; 
+    z-index: 200;
+    background-color: #333; 
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    width: 250px; 
+    text-align: left;
+    opacity: 0; 
+    transform: scale(0.8); 
+    transition: all 0.3s ease; 
+}
+
+.modal a{
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Modal animation for appearing */
+.modal.show {
+    opacity: 1; 
+    transform: scale(1); 
+}
+
+/* Remove fullscreen overlay */
+.modal-overlay {
+    display: none; 
+}
+
+.modal-content {
+    padding: 10px; 
+}
+
+.close-btn {
+    font-size: 24px; 
+    cursor: pointer;
+    color: #888;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0; 
+    line-height: 1; 
+}
+
+#weather-settings-modal h2 {
+    font-size: 18px; 
+    margin: 0; 
+    display: inline-block; 
+    padding: 0;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 10px; 
+}
+
+/* Input and select fields */
+.modal-content label {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.modal-content input[type="text"], select {
+    box-sizing: border-box; 
+    width: 100%; 
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: 0px;
+    border-radius: 4px;
+    background-color: #444;
+    color: #fff;
+}
+
+.modal-content button {
+    width: 100%; 
+    padding: 8px;
+    background-color: #00b894;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+button:hover {
+    background-color: #009874;
+}
+
+/* Keyframes for modal popup animation */
+@keyframes popupAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0.9); 
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1); 
+    }
+}
+
+/* Add animation only to modal appearance */
+.modal.show {
+    animation: popupAnimation 0.3s ease-in-out; 
+}
+

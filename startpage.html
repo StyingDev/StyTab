@@ -11,8 +11,41 @@
   <link rel="stylesheet" href="styles/quick-links.css">
   <link rel="stylesheet" href="styles/search-bar.css">
   <link rel="stylesheet" href="styles/settings.css">
+  <link rel="stylesheet" href="styles/weather.css">
 </head>
 <body>
+
+    <!-- Weather Widget -->
+  <div class="weather-widget" id="weather-widget">
+    <div class="weather-details">
+      <div id="weather-temperature">Loading...</div>
+      <div id="weather-description"></div>
+    </div>
+  </div>
+
+  <!-- Weather Settings Modal (hidden by default) -->
+  <div class="modal" id="weather-settings-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Weather Settings</h2>
+        <span class="close-btn" id="close-weather-modal">&times;</span>
+      </div>
+
+      <label for="api-key"><a href="https://developer.accuweather.com/" target="_blank">Accuweather API Key</a>:</label>
+      <input type="text" id="api-key" placeholder="Enter API Key" value="">
+
+      <label for="city-id"><a href="https://www.accuweather.com/" target="_blank">City ID</a>:</label>
+      <input type="text" id="city-id" placeholder="Enter City ID" value="">
+
+      <label for="temp-unit">Temperature Unit:</label>
+      <select id="temp-unit">
+          <option value="C">Celsius</option>
+          <option value="F">Fahrenheit</option>
+      </select>
+
+      <button id="save-weather-settings">Save</button>
+    </div>
+  </div>  
 
   <!-- Clock section -->
   <div class="clock" id="clock">Loading time...</div>
@@ -97,6 +130,15 @@
       </label>
     </div>
 
+    <div class="toggle-container">
+      <label for="toggle-weather">Show Weather:</label>
+      <label class="switch">
+          <input type="checkbox" id="toggle-weather">
+          <span class="slider"></span>
+      </label>
+    </div>
+
+
     <button id="save-settings">Save</button>    
     
   </div>
@@ -128,5 +170,6 @@
   <script src="Scripts/clock.js"></script>
   <script src="Scripts/settings.js"></script>
   <script src="Scripts/quicklinks.js"></script>
+  <script src="Scripts/weather.js"></script>
 </body>
 </html>
