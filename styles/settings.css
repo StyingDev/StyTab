@@ -22,7 +22,31 @@
   z-index: 100;
   transition: right 0.4s ease;
   display: block; /* Always keep this block */
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin; 
 }
+
+.settings-sidebar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera: Hide scrollbar */
+}
+
+.settings-sidebar:hover::-webkit-scrollbar {
+  display: block; 
+  width: 8px;
+}
+
+.settings-sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(85, 85, 85, 0.8);
+  border-radius: 10px;
+}
+
+.settings-sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(119, 119, 119, 0.8);
+}
+
+
+
 
 /* Active class to slide in the sidebar */
 .settings-sidebar.active {
@@ -53,7 +77,7 @@
   width: calc(100% - 20px);
   font-size: 15px;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   border-radius: 5px;
   border: none;
   background-color: #444;
