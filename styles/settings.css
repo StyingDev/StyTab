@@ -94,6 +94,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
+  margin-bottom: 30px;
 }
 
 .settings-sidebar button:hover {

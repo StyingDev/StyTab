@@ -63,7 +63,7 @@
 
   <!-- Settings icon -->
   <div class="settings" id="settings-icon">
-    <img src="icons/setting-icon.svg" alt="⚙" style="width: 25px; height: 25px;">
+    <img src="icons/setting-icon.svg" alt="⚙" style="width: 25px; height: 25px;"> 
   </div>
 
   <!-- QuickLinks icon -->
@@ -105,6 +105,10 @@
         <option value="24">24-hour</option>
     </select>
 
+    <label for="text-color">Custom Text Color (Hex):</label>
+    <input type="text" id="text-color" placeholder="#FFFFFF">
+
+
     <div class="toggle-container">
       <label for="toggle-time">Show Time:</label>
       <label class="switch">
@@ -112,6 +116,7 @@
           <span class="slider"></span>
       </label>
     </div>
+
 
     <!-- Styled toggle switch for search bar -->
     <div class="toggle-container">
@@ -170,5 +175,6 @@
   <script src="Scripts/settings.js"></script>
   <script src="Scripts/quicklinks.js"></script>
   <script src="Scripts/weather.js"></script>
+    <script src="Scripts/color.js"></script>
 </body>
 </html>
