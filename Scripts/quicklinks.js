@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
             deleteButton.src = "icons/Setting-close-icon.svg";
             deleteButton.alt = "Delete Link";
             deleteButton.classList.add("delete-link");
+            deleteButton.id = "delete-link";
             deleteButton.style.width = "16px";
             deleteButton.style.height = "16px";
             deleteButton.style.marginLeft = "10px";

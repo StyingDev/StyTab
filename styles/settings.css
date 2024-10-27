@@ -159,5 +159,5 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(100px);
+  transform: translateX(98px);
 }

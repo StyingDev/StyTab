@@ -126,6 +126,7 @@
   cursor: pointer;
   animation: fadeIn 2s ease-in-out;
 }
+
 /* QuickLinks Sidebar */
 .quicklinks-sidebar {
   position: fixed;

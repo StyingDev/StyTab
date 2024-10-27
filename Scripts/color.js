@@ -8,10 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const clock = document.getElementById("clock");
     const searchInput = document.getElementById("search-query");
     
-    // Get settings and quicklinks icons
-    const settingsIcon = document.getElementById("settings-icon");
-    const quicklinksIcon = document.getElementById("quicklinks-icon");
-
     // Get Save button
     const saveSettingsButton = document.getElementById("save-settings");
 
@@ -62,12 +58,5 @@ document.addEventListener("DOMContentLoaded", function () {
             h1.style.setProperty("color", color, "important");
         });
 
-        // Apply color to Settings and QuickLinks icons
-        if (settingsIcon) {
-            settingsIcon.style.setProperty("color", color, "important");
-        }
-        if (quicklinksIcon) {
-            quicklinksIcon.style.setProperty("color", color, "important");
-        }
     }
 });
