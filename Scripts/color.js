@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const quickLinksDiv = document.getElementById("quick-links-section");
     const quickLinks = quickLinksDiv ? quickLinksDiv.querySelectorAll("a") : [];
     const clock = document.getElementById("clock");
-    const searchInput = document.getElementById("search-query");
     
     // Get Save button
     const saveSettingsButton = document.getElementById("save-settings");
@@ -40,11 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // Apply color to clock (time)
         if (clock) {
             clock.style.setProperty("color", color, "important");
-        }
-
-        // Apply color to search bar text
-        if (searchInput) {
-            searchInput.style.setProperty("color", color, "important");
         }
 
         // Apply color to quick links (individual links within the section)
