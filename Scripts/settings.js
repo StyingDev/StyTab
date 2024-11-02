@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Handle background loading
     if (existingBackground) {
         newBackground = existingBackground;
-        document.body.style.backgroundImage = `url(${newBackground})`;
+        setBackground(newBackground);
         backgroundInput.value = newBackground;
         document.body.classList.remove("gradient-active"); 
     } else {
@@ -135,12 +135,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Apply background settings
         if (newBackground === "") {
-            document.body.style.backgroundImage = ''; 
+            removeBackground();
             document.body.classList.add("gradient-active");
             localStorage.removeItem("background"); 
         } else {
             localStorage.setItem("background", newBackground);
-            document.body.style.backgroundImage = `url(${newBackground})`;
+            setBackground(newBackground);
             document.body.classList.remove("gradient-active");
         }
 
@@ -178,4 +178,43 @@ document.addEventListener("DOMContentLoaded", function() {
         // Close settings sidebar after saving
         closeSidebar();
     });
+
+    // Add these new functions
+    function setBackground(url) {
+        removeBackground();
+        
+        if (url.toLowerCase().endsWith('.mp4')) {
+            const video = document.createElement('video');
+            video.id = 'background-video';
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;
+            video.style.position = 'fixed';
+            video.style.right = '0';
+            video.style.bottom = '0';
+            video.style.minWidth = '100%';
+            video.style.minHeight = '100%';
+            video.style.width = 'auto';
+            video.style.height = 'auto';
+            video.style.zIndex = '-1';
+            video.style.objectFit = 'cover';
+            
+            const source = document.createElement('source');
+            source.src = url;
+            source.type = 'video/mp4';
+            
+            video.appendChild(source);
+            document.body.insertBefore(video, document.body.firstChild);
+        } else {
+            document.body.style.backgroundImage = `url(${url})`;
+        }
+    }
+
+    function removeBackground() {
+        const existingVideo = document.getElementById('background-video');
+        if (existingVideo) {
+            existingVideo.remove();
+        }
+        document.body.style.backgroundImage = '';
+    }
 });
