@@ -46,28 +46,35 @@ A minimalist and customizable new tab page extension for your browser that enhan
    - Choose temperature unit (Celsius/Fahrenheit)
 
 ## 🚀 Installation
-### Firefox
-#### Download Officially from the addon store
-1. [Firefox Addon store](https://addons.mozilla.org/en-US/firefox/addon/stytab/)
-2. Click "Add to Firefox
 
-#### Install Manually
+<details>
+<summary><h2>📘 Firefox</h2></summary>
+
+### Option 1: Official Store Download
+1. Visit the [Firefox Addon Store](https://addons.mozilla.org/en-US/firefox/addon/stytab/)
+2. Click "Add to Firefox"
+
+### Option 2: Manual Installation
 1. Download the latest release
-2. Go to `about:debugging`
+2. Navigate to `about:debugging`
 3. Click "This Firefox"
 4. Click "Load Temporary Add-on"
 5. Select any file from the downloaded folder
+</details>
 
-### Chrome/Brave/Edge (Unstable)
-#### Download Officially from the addon store
-1. Official store listing not available
+<details>
+<summary><h2>🌐 Chrome / Brave / Edge (Unstable)</h2></summary>
 
-#### Install Manually
+### Option 1: Official Store Download
+> ⚠ Not currently available in official stores
+
+### Option 2: Manual Installation
 1. Download the latest release
-2. Go to `chrome://extensions/`
+2. Navigate to `chrome://extensions/`
 3. Enable "Developer mode"
 4. Click "Load unpacked"
 5. Select the downloaded folder
+</details>
 
 
 
