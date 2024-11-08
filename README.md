@@ -48,7 +48,7 @@ A minimalist and customizable new tab page extension for your browser that enhan
 ## 🚀 Installation
 
 <details>
-<summary><h2>📘 Firefox</h2></summary>
+<summary><h2>📘 Firefox Based</h2></summary>
 
 ### Option 1: Official Store Download
 1. Visit the [Firefox Addon Store](https://addons.mozilla.org/en-US/firefox/addon/stytab/)
@@ -63,7 +63,7 @@ A minimalist and customizable new tab page extension for your browser that enhan
 </details>
 
 <details>
-<summary><h2>🌐 Chrome / Brave / Edge (Unstable)</h2></summary>
+<summary><h2>🌐 Chromium Based (Unstable)</h2></summary>
 
 ### Option 1: Official Store Download
 > ⚠ Not currently available in official stores
