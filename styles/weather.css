@@ -8,6 +8,12 @@
     padding: 10px;
     border-radius: 8px;
     z-index: 100;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.weather-widget:hover {
+    transform: scale(1.05);
 }
 
 #weather-temperature {
