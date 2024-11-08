@@ -111,7 +111,7 @@ Contributions are welcome! Feel free to:
 
 - Report bugs
 - Suggest new features
-- Submit pull requests
+- Fork & Submit pull requests
 
 ## 🙏 Acknowledgments
 
