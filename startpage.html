@@ -85,8 +85,15 @@
     <input type="text" id="greeting" placeholder="Hello!">
 
 
-    <label for="background">Background Image URL:</label>
+    <label for="background" title="Supported formats: Images (.jpg, .png, .gif, etc) and MP4 videos">Background Image URL:</label>
     <input type="text" id="background" placeholder="Background URL">
+    
+    <div class="or-divider">
+      <span>OR</span>
+    </div>
+    
+    <button class="file-upload" id="file-upload">Upload or Drag and Drop</button>    
+
 
     <label for="text-color">Custom Text Color (Hex):</label>
     <input type="text" id="text-color" placeholder="#FFFFFF">
@@ -115,6 +122,7 @@
         <option value="12">12-hour</option>
         <option value="24">24-hour</option>
     </select>
+
 
     <h2>Display Settings</h2>
 
@@ -152,7 +160,7 @@
           <span class="slider"></span>
       </label>
     </div>
-    <button id="save-settings">Save</button>    
+    <button class="save-settings" id="save-settings">Save</button>    
   </div>
 
 

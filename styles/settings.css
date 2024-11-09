@@ -84,7 +84,7 @@
   color: white;
 }
 
-.settings-sidebar button {
+.settings-sidebar .save-settings, .settings-sidebar .file-upload {
   font-size: 15px;
   padding: 10px;
   background-color: #00b894;
@@ -94,10 +94,12 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
-  margin-bottom: 30px;
 }
 
-.settings-sidebar button:hover {
+.settings-sidebar .save-settings {
+  margin-bottom: 30px;
+}
+.settings-sidebar .save-settings:hover, .settings-sidebar .file-upload:hover {
   background-color: #009874;
 }
 
@@ -160,4 +162,13 @@ input:checked + .slider {
 
 input:checked + .slider:before {
   transform: translateX(98px);
+}
+
+.settings-sidebar .or-divider {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.settings-sidebar .or-divider span {
+  color: #888;
 }

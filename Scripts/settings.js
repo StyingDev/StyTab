@@ -22,6 +22,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // New elements for weather functionality
     const toggleWeatherCheckbox = document.getElementById("toggle-weather"); // Checkbox for toggling weather
     const weatherWidget = document.getElementById("weather-widget"); // Weather widget element
+    
+    // File upload element
+    const fileUploadButton = document.getElementById("file-upload");
+
+
 
     // Variables to track changes
     let newBackground = '';
@@ -123,67 +128,72 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Only apply changes after pressing the save button
     saveButton.addEventListener("click", () => {
-        // Get values from inputs
-        newBackground = backgroundInput.value.trim(); 
-        newGreeting = document.getElementById("greeting").value.trim();
-        newSearchEngine = searchEngineSelect.value; 
-        newSearchVisible = toggleSearchCheckbox.checked; 
-        newQuickLinksVisible = toggleQuickLinksCheckbox.checked; 
-        newTimeVisible = toggleTimeCheckbox.checked; 
-        newTimeFormat = timeFormatSelect.value; 
-        newWeatherVisible = toggleWeatherCheckbox.checked;
+        try {
+            // Get values from inputs
+            newBackground = backgroundInput.value.trim(); 
+            newGreeting = document.getElementById("greeting").value.trim();
+            newSearchEngine = searchEngineSelect.value; 
+            newSearchVisible = toggleSearchCheckbox.checked; 
+            newQuickLinksVisible = toggleQuickLinksCheckbox.checked; 
+            newTimeVisible = toggleTimeCheckbox.checked; 
+            newTimeFormat = timeFormatSelect.value; 
+            newWeatherVisible = toggleWeatherCheckbox.checked;
 
-        // Apply background settings
-        if (newBackground === "") {
-            removeBackground();
-            document.body.classList.add("gradient-active");
-            localStorage.removeItem("background"); 
-        } else {
-            localStorage.setItem("background", newBackground);
-            setBackground(newBackground);
-            document.body.classList.remove("gradient-active");
+            // Apply background settings
+            if (newBackground === "") {
+                removeBackground();
+                document.body.classList.add("gradient-active");
+                localStorage.removeItem("background"); 
+            } else {
+                try {
+                    localStorage.setItem("background", newBackground);
+                    setBackground(newBackground);
+                    document.body.classList.remove("gradient-active");
+                } catch (error) {
+                    console.error('Error saving background:', error);
+                    alert('Error saving background. Please try again.');
+                }
+            }
+
+            // Apply greeting settings
+            if (newGreeting === "") {
+                greetingElement.textContent = "Hello!"; // Default greeting
+                localStorage.setItem("greeting", "Hello!");
+            } else {
+                greetingElement.textContent = newGreeting;
+                localStorage.setItem("greeting", newGreeting);
+            }
+
+            // Apply visibility settings
+            searchBox.style.display = newSearchVisible ? 'block' : 'none';
+            quickLinksDiv.style.display = newQuickLinksVisible ? 'block' : 'none';
+            clockElement.style.display = newTimeVisible ? 'block' : 'none';
+
+            // Set weather visibility based on newWeatherVisible
+            weatherWidget.style.display = newWeatherVisible ? 'block' : 'none';
+            localStorage.setItem("weatherVisible", newWeatherVisible);
+
+            localStorage.setItem("searchEngine", newSearchEngine);
+            localStorage.setItem("searchBarVisible", newSearchVisible);
+            localStorage.setItem("quickLinksVisible", newQuickLinksVisible);
+            localStorage.setItem("timeVisible", newTimeVisible);
+            localStorage.setItem("timeFormat", newTimeFormat);
+
+            searchForm.action = newSearchEngine;
+
+            updateClock();
+
+            closeSidebar();
+        } catch (error) {
+            console.error('Error in save button handler:', error);
+            alert('Error saving settings. Please try again.');
         }
-
-        // Apply greeting settings
-        if (newGreeting === "") {
-            greetingElement.textContent = "Hello!"; // Default greeting
-            localStorage.setItem("greeting", "Hello!");
-        } else {
-            greetingElement.textContent = newGreeting;
-            localStorage.setItem("greeting", newGreeting);
-        }
-
-        // Apply visibility settings
-        searchBox.style.display = newSearchVisible ? 'block' : 'none';
-        quickLinksDiv.style.display = newQuickLinksVisible ? 'block' : 'none';
-        clockElement.style.display = newTimeVisible ? 'block' : 'none';
-
-        // Set weather visibility based on newWeatherVisible
-        weatherWidget.style.display = newWeatherVisible ? 'block' : 'none';
-        localStorage.setItem("weatherVisible", newWeatherVisible);
-
-        // Save settings to localStorage
-        localStorage.setItem("searchEngine", newSearchEngine);
-        localStorage.setItem("searchBarVisible", newSearchVisible);
-        localStorage.setItem("quickLinksVisible", newQuickLinksVisible);
-        localStorage.setItem("timeVisible", newTimeVisible);
-        localStorage.setItem("timeFormat", newTimeFormat);
-
-        // Update search form action
-        searchForm.action = newSearchEngine;
-
-        // Call updateClock to reflect the new format immediately
-        updateClock();
-
-        // Close settings sidebar after saving
-        closeSidebar();
     });
 
-    // Add these new functions
     function setBackground(url) {
         removeBackground();
         
-        if (url.toLowerCase().endsWith('.mp4')) {
+        if (url.toLowerCase().endsWith('.mp4') || url.includes('data:video/mp4')) {
             const video = document.createElement('video');
             video.id = 'background-video';
             video.autoplay = true;
@@ -217,4 +227,112 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         document.body.style.backgroundImage = '';
     }
+    
+
+    function processFile(file) {
+        if (!file.type.startsWith('image/') && file.type !== 'video/mp4') {
+            alert('Only image and MP4 video files are supported');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const dataUrl = e.target.result;
+                if (backgroundInput) {
+                    backgroundInput.value = dataUrl;
+                    document.body.classList.remove("gradient-active");
+                    setBackground(dataUrl);
+                } else {
+                    console.error('Background input element not found');
+                }
+            } catch (error) {
+                console.error('Error processing file:', error);
+                alert('Error processing file. Please try another file.');
+            }
+        };
+
+        reader.onerror = () => {
+            console.error('Error reading file');
+            alert('Error reading file. Please try again.');
+        };
+
+        try {
+            reader.readAsDataURL(file);
+        } catch (error) {
+            console.error('Error initiating file read:', error);
+            alert('Error reading file. Please try again.');
+        }
+    }
+
+    fileUploadButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = "image/*,video/mp4";
+        
+        input.onchange = async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                processFile(file);
+            }
+        };
+        
+        input.click();
+    });
+
+    let dragCounter = 0;
+    
+    document.addEventListener("dragenter", (e) => {
+        e.preventDefault();
+        dragCounter++;
+        document.body.classList.add('drag-over');
+    });
+
+    document.addEventListener("dragleave", (e) => {
+        e.preventDefault();
+        dragCounter--;
+        if (dragCounter === 0) {
+            document.body.classList.remove('drag-over');
+        }
+    });
+
+    document.addEventListener("dragover", (e) => {
+        e.preventDefault();
+    });
+
+    document.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dragCounter = 0;
+        document.body.classList.remove('drag-over');
+        
+        const file = e.dataTransfer.files[0];
+        if (file) {
+            processFile(file);
+        }
+    });
+
+    saveButton.addEventListener("click", () => {
+        try {
+            const newBackground = backgroundInput?.value?.trim() ?? '';
+            
+            if (newBackground === "") {
+                removeBackground();
+                document.body.classList.add("gradient-active");
+                localStorage.removeItem("background");
+            } else {
+                try {
+                    localStorage.setItem("background", newBackground);
+                    setBackground(newBackground);
+                    document.body.classList.remove("gradient-active");
+                } catch (error) {
+                    console.error('Error saving background:', error);
+                    alert('Error saving background. Please try again.');
+                }
+            }
+        } catch (error) {
+            console.error('Error in save button handler:', error);
+            alert('Error saving settings. Please try again.');
+        }
+    });
 });
