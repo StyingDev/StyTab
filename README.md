@@ -9,7 +9,7 @@
 
 A minimalist and customizable new tab page extension for your browser that enhances your browsing experience with style.
 
-![Version](https://img.shields.io/badge/version-1.1.7-blue)
+![Version](https://img.shields.io/badge/version-1.1.8-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ## ✨ Features
