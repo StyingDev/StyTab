@@ -164,7 +164,8 @@
   border-radius: 10px;
 }
 
-.quicklinks-sidebar::-webkit-scrollbar-thumb:hover {
+
+.quicklinks-sidebar:hover::-webkit-scrollbar-thumb {
   background-color: rgba(119, 119, 119, 0.8);
 }
 
