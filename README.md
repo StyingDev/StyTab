@@ -20,7 +20,6 @@ A minimalist and customizable new tab page extension for your browser that enhan
 - **Custom Backgrounds**: Set your own background image or video
 - **Time Display**: Configurable 12/24-hour clock format with day of the week
 - **Color Customization**: Personalize text colors to match your theme
-- **Animated Gradients**: Beautiful default gradient background when no custom background is set
 - **Responsive Design**: Works seamlessly across different screen sizes
 
 ## 🎨 Customization Options
