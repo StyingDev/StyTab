@@ -78,13 +78,9 @@ A minimalist and customizable new tab page extension for your browser that enhan
 
 
 
-## 🎨 Example
-
-Check out what StyTab looks like in action:
-
+## 🎨 Showcase
 <div style="display: flex; gap: 10px;">
-  <img src="https://addons.mozilla.org/user-media/previews/full/306/306013.png?modified=1727639141" alt="Preview of the startpage extension" width="300"/>
-  <img src="https://addons.mozilla.org/user-media/previews/full/306/306014.png?modified=1727639142" alt="Example image of Startpage 2" width="300"/>
+  <img src="https://i.imgur.com/hpzd7eH.png"/>
 </div>
 
 
