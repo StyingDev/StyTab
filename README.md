@@ -82,7 +82,7 @@ A minimalist and customizable new tab page extension for your browser that enhan
 
 ## 🎨 Showcase
 <div style="display: flex; gap: 10px;">
-  <img src="https://i.imgur.com/hpzd7eH.png"/>
+  <img src="https://i.imgur.com/zXbxB6g.png"/>
 </div>
 
 
