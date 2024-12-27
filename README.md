@@ -1,7 +1,3 @@
-
-
-
-
 # StyTab 🌐📑
 
 A minimalist and customizable new tab page extension for your browser that enhances your browsing experience with style.
