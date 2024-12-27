@@ -1,7 +1,4 @@
 
-| Browser                              | Download                                                                                                                                                                |
-| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Gecko-based (Firefox and Alternatives) | [<img src="./Readme Assets/download-firefox.svg" height="53" alt="Firefox Download">](https://addons.mozilla.org/en-US/firefox/addon/stytab/)                            |
 
 
 
@@ -11,6 +8,12 @@ A minimalist and customizable new tab page extension for your browser that enhan
 
 ![Version](https://img.shields.io/badge/version-1.1.9-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
+
+
+| Browser                              | Download                                                                                                                                                                |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Gecko-based (Firefox and Alternatives) | [<img src="./Readme Assets/download-firefox.svg" height="53" alt="Firefox Download">](https://addons.mozilla.org/en-US/firefox/addon/stytab/)                            |
+
 
 ## ✨ Features
 
