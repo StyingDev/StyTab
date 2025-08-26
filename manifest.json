@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "StyTab",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Stytab - A minimalist Startpage that meets your needs.",
   "chrome_url_overrides": {
     "newtab": "startpage.html"

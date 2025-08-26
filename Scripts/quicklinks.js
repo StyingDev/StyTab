@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const linkElement = document.createElement("a");
             linkElement.href = link.url;
             linkElement.textContent = link.name;
-            linkElement.target = "_blank";
+            // linkElement.target = "_blank";
 
             // Create delete button for all links
             const deleteButton = document.createElement("img");
