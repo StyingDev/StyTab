@@ -8,29 +8,23 @@ document.addEventListener("DOMContentLoaded", function() {
     const searchForm = document.getElementById("search-form");
     const searchEngineSelect = document.getElementById("search-engine");
     const backgroundInput = document.getElementById("background");
-    const searchBox = document.querySelector(".search-box"); // Search box element
-    const toggleSearchCheckbox = document.getElementById("toggle-search"); // Checkbox for toggling search
-    const toggleQuickLinksCheckbox = document.getElementById("toggle-quick-links"); // Checkbox for toggling quick links
-    const quickLinksDiv = document.querySelector(".quick-links"); // Quick links element
+    const searchBox = document.querySelector(".search-box");
+    const toggleSearchCheckbox = document.getElementById("toggle-search");
+    const toggleQuickLinksCheckbox = document.getElementById("toggle-quick-links"); 
+    const quickLinksDiv = document.querySelector(".quick-links");
     const greetingElement = document.createElement("h1");
-    greetingElement.id = "greeting-display"; // Create a new element to display the greeting
+    greetingElement.id = "greeting-display"; 
     document.body.insertBefore(greetingElement, document.body.firstChild); // Insert it at the top
-    const timeFormatSelect = document.getElementById("time-format"); // Get time format select element
-    const clockElement = document.getElementById("clock"); // The clock display element
-    const toggleTimeCheckbox = document.getElementById("toggle-time"); // Checkbox for toggling time visibility
-
-    // New elements for weather functionality
-    const toggleWeatherCheckbox = document.getElementById("toggle-weather"); // Checkbox for toggling weather
-    const weatherWidget = document.getElementById("weather-widget"); // Weather widget element
+    const timeFormatSelect = document.getElementById("time-format");
+    const clockElement = document.getElementById("clock");
+    const toggleTimeCheckbox = document.getElementById("toggle-time");
+    const toggleWeatherCheckbox = document.getElementById("toggle-weather");
+    const weatherWidget = document.getElementById("weather-widget");
 
     // Variables to track changes
-    let newBackground = '';
-    let newSearchEngine = searchEngineSelect.value;
-    let newGreeting = "Hello!";
     let newSearchVisible = toggleSearchCheckbox.checked;
     let newQuickLinksVisible = toggleQuickLinksCheckbox.checked; 
     let newTimeVisible = toggleTimeCheckbox.checked; 
-    let newTimeFormat = timeFormatSelect.value;
     let newWeatherVisible = toggleWeatherCheckbox.checked; 
 
     // Toggle sidebar visibility
@@ -146,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Apply greeting settings
         if (newGreeting === "") {
-            greetingElement.textContent = "Hello!"; // Default greeting
+            greetingElement.textContent = "Hello!";
             localStorage.setItem("greeting", "Hello!");
         } else {
             greetingElement.textContent = newGreeting;
@@ -179,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function() {
         closeSidebar();
     });
 
-    // Add these new functions
+    // Set Background function (image or video)
     function setBackground(url) {
         removeBackground();
         

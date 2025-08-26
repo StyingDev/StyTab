@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
             clock.style.setProperty("color", color, "important");
         }
 
-        // Apply color to quick links (individual links within the section)
+        // Apply color to quick links 
         quickLinks.forEach(link => {
             link.style.color = color;
         });
@@ -51,6 +51,30 @@ document.addEventListener("DOMContentLoaded", function () {
         h1Elements.forEach(h1 => {
             h1.style.setProperty("color", color, "important");
         });
+
+        // Apply color to search button text
+        const searchButton = document.querySelector("#search-form input[type='submit']");
+        if (searchButton) {
+            searchButton.style.setProperty("color", color, "important");
+        }
+
+        // Apply color to search placeholder
+        const searchInput = document.getElementById("search-query");
+        if (searchInput) {
+            searchInput.style.setProperty("color", color, "important"); 
+            searchInput.style.setProperty("caret-color", color, "important");
+
+            // placeholder needs CSS pseudo-element
+            const styleTag = document.getElementById("dynamic-placeholder-style") || document.createElement("style");
+            styleTag.id = "dynamic-placeholder-style";
+            styleTag.innerHTML = `
+                #search-query::placeholder {
+                    color: ${color} !important;
+                    opacity: 0.6;
+                }
+            `;
+            document.head.appendChild(styleTag);
+        }
 
     }
 });

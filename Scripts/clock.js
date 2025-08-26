@@ -1,4 +1,3 @@
-// Function to update the clock with the day of the week
 function updateClock() {
     const clockElement = document.getElementById("clock");
     
@@ -18,7 +17,7 @@ function updateClock() {
     let ampm = "";
     if (timeFormat === "12") {
         ampm = hours >= 12 ? "PM" : "AM";
-        hours = hours % 12 || 12; // Convert to 12-hour format and handle midnight/noon
+        hours = hours % 12 || 12;
     }
   
     // Format the time with leading zeros if needed
