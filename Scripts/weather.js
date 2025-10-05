@@ -1,76 +1,73 @@
-// weather.js
-
 document.addEventListener('DOMContentLoaded', function () {
     const apiKeyInput = document.getElementById('api-key');
-    const cityIdInput = document.getElementById('city-id');
+    const locationInput = document.getElementById('location');
     const tempUnitSelect = document.getElementById('temp-unit');
-
     const weatherWidget = document.getElementById('weather-widget');
     const modal = document.getElementById('weather-settings-modal');
     const closeModalBtn = document.getElementById('close-weather-modal');
     const saveSettingsBtn = document.getElementById('save-weather-settings');
 
-    // Function to open the modal with animation
     function openModal() {
         const widgetRect = weatherWidget.getBoundingClientRect();
         modal.style.top = `${widgetRect.bottom + window.scrollY}px`;
         modal.style.left = `${widgetRect.left + window.scrollX}px`;
-        modal.classList.add('show'); 
+        modal.classList.add('show');
         modal.style.display = 'block'; 
         apiKeyInput.value = localStorage.getItem('apiKey') || '';
-        cityIdInput.value = localStorage.getItem('cityId') || '';
+        locationInput.value = localStorage.getItem('location') || '';
         tempUnitSelect.value = localStorage.getItem('tempUnit') || 'C';
     }
 
-    // Function to close the modal with animation
     function closeModal() {
         modal.classList.remove('show');
-        setTimeout(() => modal.style.display = 'none', 300); // Hide the modal after animation
+        setTimeout(() => modal.style.display = 'none', 300);
     }
 
-    // Attach event listeners
     weatherWidget.addEventListener('click', openModal);
     closeModalBtn.addEventListener('click', closeModal);
 
-    // Save the settings when 'Save' button is clicked
     saveSettingsBtn.addEventListener('click', () => {
-        const apiKey = apiKeyInput.value;
-        const cityId = cityIdInput.value;
-        const tempUnit = tempUnitSelect.value;
-
-        // Save settings to localStorage
-        localStorage.setItem('apiKey', apiKey);
-        localStorage.setItem('cityId', cityId);
-        localStorage.setItem('tempUnit', tempUnit);
-
-        closeModal(); 
-        getWeather(); 
+        localStorage.setItem('apiKey', apiKeyInput.value);
+        localStorage.setItem('location', locationInput.value);
+        localStorage.setItem('tempUnit', tempUnitSelect.value);
+        closeModal();
+        getWeather();
     });
 
-    // Fetch weather data and update the widget
-    function getWeather() {
-        const apiKey = localStorage.getItem('apiKey') || 'bdm2Ng1aUZELAfQIzse8VfKkvw7wLNZV'; // Default API key
-        const cityId = localStorage.getItem('cityId') || '10021'; // Default city (New York City, United States of America)
+    async function getWeather() {
+        const apiKey = localStorage.getItem('apiKey') || 'qD9ecsnV7YDX2J0k2GOssB9UNYZ7Z528'; // Free for the normies <3
+        const location = localStorage.getItem('location') || '';
         const tempUnit = localStorage.getItem('tempUnit') || 'C';
+        
+        if (!apiKey || !location) {
+            document.getElementById('weather-temperature').innerText = 'Setup';
+            document.getElementById('weather-description').innerText = 'Required';
+            return;
+        }
 
-        const weatherUrl = `https://dataservice.accuweather.com/currentconditions/v1/${cityId}?apikey=${apiKey}&details=true`;
-
-        fetch(weatherUrl)
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.length > 0) {
-                    const weatherData = data[0];
-                    const temperature = tempUnit === 'C' ? weatherData.Temperature.Metric.Value : weatherData.Temperature.Imperial.Value;
-                    const weatherText = weatherData.WeatherText;
-
-                    // Update the widget with the weather information
-                    document.getElementById('weather-temperature').innerText = `${temperature}°${tempUnit}`;
-                    document.getElementById('weather-description').innerText = weatherText;
-                }
-            })
-            .catch(error => console.error('Error fetching weather data:', error));
+        const unitMap = { 'C': 'si', 'F': 'us' };
+        const pirateUnits = unitMap[tempUnit] || 'us';
+        const weatherUrl = `https://api.pirateweather.net/forecast/${apiKey}/${location}?units=${pirateUnits}&exclude=minutely,hourly,daily,alerts,flags`;
+        
+        try {
+            const response = await fetch(weatherUrl);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            
+            const data = await response.json();
+            if (data?.currently) {
+                const temperature = Math.round(data.currently.temperature);
+                document.getElementById('weather-temperature').innerText = `${temperature}°${tempUnit}`;
+                document.getElementById('weather-description').innerText = data.currently.summary;
+            } else {
+                throw new Error('Invalid API response format');
+            }
+        } catch (error) {
+            console.error('Error fetching weather data:', error);
+            document.getElementById('weather-temperature').innerText = 'Error';
+            document.getElementById('weather-description').innerText = 'Check Settings';
+        }
     }
 
-    // Initial call to fetch weather when the page loads
     getWeather();
+    setInterval(getWeather, 30 * 60 * 1000);
 });

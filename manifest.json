@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "StyTab",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Stytab - A minimalist Startpage that meets your needs.",
   "chrome_url_overrides": {
     "newtab": "startpage.html"
@@ -10,6 +10,9 @@
     "tabs",
     "scripting",
     "activeTab"
+  ],
+  "host_permissions": [
+    "https://api.pirateweather.net/*"
   ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
