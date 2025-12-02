@@ -17,12 +17,7 @@ body {
     overflow: hidden;
 }
 
-img.logo {
-    width: 48px; 
-    height: 48px;
-    margin-bottom: 10px;
-    animation: float 3s ease-in-out infinite; 
-}
+img.logo { width: 48px; height: 48px; margin-bottom: 10px; animation: float 3s ease-in-out infinite; }
 
 @keyframes float {
     0% {
@@ -53,22 +48,7 @@ button {
     margin-bottom: 20px;
 }
 
-button img {
-    width: 18px; 
-    height: 18px;
-    margin-right: 5px; 
-}
-
-button:hover {
-    background-color: #009c6a; 
-}
-
-button:active {
-    transform: scale(0.95); 
-}
-
-.Title {
-    padding-bottom: 30px;
-    font-size: 20px; 
-    text-align: center; 
-}
+button img { width: 18px; height: 18px; margin-right: 5px; }
+button:hover { background-color: #009c6a;  }
+button:active { transform: scale(0.95);  }
+.Title { padding-bottom: 30px; font-size: 20px; text-align: center; }

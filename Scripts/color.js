@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Get elements
     const textColorInput = document.getElementById("text-color");
     const weatherWidget = document.getElementById("weather-widget");
-    const weatherDetails = weatherWidget ? weatherWidget.querySelectorAll("*") : []; // All nested elements in weather widget
+    const weatherDetails = weatherWidget ? weatherWidget.querySelectorAll("*") : [];
     const quickLinksDiv = document.getElementById("quick-links-section");
     const quickLinks = quickLinksDiv ? quickLinksDiv.querySelectorAll("a") : [];
     const clock = document.getElementById("clock");

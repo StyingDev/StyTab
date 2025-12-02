@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const quicklinkNameInput = document.getElementById("quicklink-name");
     const quicklinkUrlInput = document.getElementById("quicklink-url");
     const githubLink = document.getElementById("github-link");
-    
+
     // Set the link to GitHub page (if you are seeing this don't ask why I made it so unconventional.)
     const gitHubUrl = "https://github.com/StyingDev/StyTab"; 
 
@@ -25,12 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
         { name: "YouTube", url: "https://www.youtube.com" }
     ];
 
-    // Save predefined links to localStorage if not already saved
     function savePredefinedLinks() {
         let quickLinks = JSON.parse(localStorage.getItem("quickLinks")) || [];
         const predefinedSaved = localStorage.getItem("predefinedLinks");
 
-        // If predefined links are not saved in localStorage, add them
         if (!predefinedSaved) {
             quickLinks = [...predefinedLinks, ...quickLinks]; 
             localStorage.setItem("quickLinks", JSON.stringify(quickLinks));
@@ -38,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Load QuickLinks from localStorage
     function loadQuickLinks() {
         const quickLinks = JSON.parse(localStorage.getItem("quickLinks")) || [];
 
@@ -61,9 +58,8 @@ document.addEventListener("DOMContentLoaded", function() {
             deleteButton.style.height = "16px";
             deleteButton.style.marginLeft = "10px";
 
-            // Add event listener to delete button
             deleteButton.addEventListener("click", () => {
-                removeQuickLink(index); // Allow removal for all links (predefined and custom)
+                removeQuickLink(index); // Allows removal for all links (predefined and custom)
             });
 
             const linkWrapper = document.createElement("div");
@@ -93,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
         loadQuickLinks(); 
     }
 
-    // Toggle Quick Links sidebar visibility when quick links icon is clicked
+    // Toggle Quick Links sidebar visibility
     quickLinksIcon.addEventListener("click", () => {
         quickLinksSidebar.classList.toggle("active");
     });

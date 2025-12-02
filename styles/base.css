@@ -17,9 +17,7 @@ body {
   height: 100vh;
   margin: 0;
   overflow: hidden;
-  background-size: cover;
   transition: background 1s ease-in-out;
-  background-color: #245c4a;
 }
 
 h1 {

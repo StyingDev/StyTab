@@ -1,6 +1,15 @@
-/* Quick Links Styling */
+/* Quick Links Styling - MAIN PAGE */
+.quick-links {
+  flex-wrap: wrap; 
+  gap: 15px; 
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px; 
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 .quick-links a {
-  margin: 0 15px;
   text-decoration: none;
   color: #fff;
   font-size: 20px;
@@ -10,6 +19,9 @@
   background-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); 
   transition: all 0.3s ease;
+  margin: 0;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .quick-links a:hover {
@@ -39,13 +51,10 @@
 
 
 /* Container for Quick Links */
-.quick-links { display: flex; flex-direction: column; margin-top: 30px; }
 .quick-links-sidebar { display: flex; flex-direction: column; margin-top: 10px; }
-.quick-links a { text-decoration: none; color: #ffffff; font-size: 16px; width: calc(100% - 20px); }
 .quick-links-sidebar a { text-decoration: none; color: #ffffff; font-size: 16px; width: calc(100% - 20px); }
 
 /* Wrapper for each Quick Link and delete button */
-.quick-links div { display: flex; align-items: center; justify-content: space-between; margin: 5px 0; }
 .quick-links-sidebar div { display: flex; align-items: center; justify-content: space-between; margin: 5px 0; }
 
 /* Style for the delete button */

@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.classList.remove("modal-active");
     }
 
-    // Optionally toggle sidebar on escape key press
+    // toggle sidebar on escape key press
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
             if (settingsSidebar.classList.contains("active")) {
@@ -100,24 +100,23 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Set search box visibility
-    searchBox.style.display = searchBarVisible ? 'block' : 'none'; // Hide or show search box
+    searchBox.style.display = searchBarVisible ? 'block' : 'none';
     toggleSearchCheckbox.checked = searchBarVisible;
 
     // Set quick links visibility
-    quickLinksDiv.style.display = quickLinksVisible ? 'block' : 'none'; // Hide or show quick links
+    quickLinksDiv.style.display = quickLinksVisible ? 'flex' : 'none';
     toggleQuickLinksCheckbox.checked = quickLinksVisible;
 
     // Set time visibility
-    clockElement.style.display = timeVisible ? 'block' : 'none'; // Hide or show clock
+    clockElement.style.display = timeVisible ? 'block' : 'none';
     toggleTimeCheckbox.checked = timeVisible;
 
     // Set weather visibility
-    weatherWidget.style.display = weatherVisible ? 'block' : 'none'; // Set initial visibility
-    toggleWeatherCheckbox.checked = weatherVisible; // Set checkbox state
+    weatherWidget.style.display = weatherVisible ? 'block' : 'none';
+    toggleWeatherCheckbox.checked = weatherVisible; 
 
-    // Only apply changes after pressing the save button
+    // Save Button
     saveButton.addEventListener("click", () => {
-        // Get values from inputs
         newBackground = backgroundInput.value.trim(); 
         newGreeting = document.getElementById("greeting").value.trim();
         newSearchEngine = searchEngineSelect.value; 
@@ -149,10 +148,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Apply visibility settings
         searchBox.style.display = newSearchVisible ? 'block' : 'none';
-        quickLinksDiv.style.display = newQuickLinksVisible ? 'block' : 'none';
+        quickLinksDiv.style.display = newQuickLinksVisible ? 'flex' : 'none';
         clockElement.style.display = newTimeVisible ? 'block' : 'none';
-
-        // Set weather visibility based on newWeatherVisible
+        // Apply weather settings
         weatherWidget.style.display = newWeatherVisible ? 'block' : 'none';
         localStorage.setItem("weatherVisible", newWeatherVisible);
 
@@ -166,10 +164,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Update search form action
         searchForm.action = newSearchEngine;
 
-        // Call updateClock to reflect the new format immediately
         updateClock();
-
-        // Close settings sidebar after saving
         closeSidebar();
     });
 

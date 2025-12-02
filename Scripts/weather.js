@@ -69,5 +69,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getWeather();
-    setInterval(getWeather, 30 * 60 * 1000);
 });

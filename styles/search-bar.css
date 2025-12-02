@@ -1,4 +1,4 @@
-/* Search Bar Styling (for #search-query inside .search-box) */
+/* Search Bar (for #search-query inside .search-box) */
 .search-box #search-query {
   width: 400px;
   padding: 12px;
@@ -21,7 +21,7 @@
   backdrop-filter: blur(15px);
 }
 
-/* Search Button Styling (for submit button inside .search-box) */
+/* Search Button(for submit button inside .search-box) */
 .search-box input[type="submit"] {
   padding: 12px 20px;
   font-size: 18px;
@@ -43,7 +43,7 @@
   backdrop-filter: blur(15px);
 }
 
-/* Media Queries for Responsiveness */
+/* Media Queries */
 @media (max-width: 768px) {
   .search-box #search-query {
     width: 80%;

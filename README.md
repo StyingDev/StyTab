@@ -2,7 +2,7 @@
 
 A minimalist and customizable new tab page extension for your browser that enhances your browsing experience with style.
 
-![Version](https://img.shields.io/badge/version-1.2.3-blue)
+![Version](https://img.shields.io/badge/version-1.2.5-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 
@@ -21,26 +21,14 @@ A minimalist and customizable new tab page extension for your browser that enhan
 - **Color Customization**: Personalize text colors to match your theme
 - **Responsive Design**: Works seamlessly across different screen sizes
 
-## 🎨 Customization Options
-
-- Custom greeting message
-- Background image/video URL
-- Text color
-- Search engine preference
-- Time format (12/24 hour)
-- Toggle visibility of:
-  - Search bar
-  - Quick links
-  - Weather widget
-  - Time display
 
 ## 🌤️ Weather Widget Setup
 
-1. Get an API key from [AccuWeather](https://developer.accuweather.com/)
-2. Find your City ID from [AccuWeather](https://www.accuweather.com/)
+1. Get an API key from [Pirate Weather](https://pirate-weather.apiable.io/)
+2. Find your LatLong from [GPS Coordinates](https://www.gps-coordinates.net/)
 3. Click the weather widget to configure:
    - Enter your API key
-   - Enter your city ID
+   - Enter your LatLong
    - Choose temperature unit (Celsius/Fahrenheit)
 
 ## 🚀 Installation
@@ -97,19 +85,11 @@ git clone https://github.com/StyingDev/StyTab.git
 
 ## 📝 License
 
-This project is licensed under the MIT License—check out the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License, check out the [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing
+## 🙏 Appreciation
 
-Contributions are welcome! Feel free to:
-
-- Report bugs
-- Suggest new features
-- Fork & Submit pull requests
-
-## 🙏 Acknowledgments
-
-- Weather data provided by [AccuWeather](https://www.accuweather.com/)
+- Weather data provided by [Pirate Weather](pirateweather.net/)
 - Icons provided by [SVG Repo](https://www.svgrepo.com/)
 - Thanks to [mtab](https://github.com/maxhu08/mtab) for inspirations
 ---

@@ -3,8 +3,6 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    display: flex;
-    flex-direction: column;
     padding: 10px;
     border-radius: 12px;
     z-index: 100;
@@ -82,7 +80,7 @@
   color: white;
 }
 
-/* Weather modal save button matching settings sidebar */
+/* Weather modal save button */
 .modal-content button {
     width: 100%;
     padding: 10px 12px;
