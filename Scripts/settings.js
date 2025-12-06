@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const quickLinksDiv = document.querySelector(".quick-links");
     const greetingElement = document.createElement("h1");
     greetingElement.id = "greeting-display"; 
-    document.body.insertBefore(greetingElement, document.body.firstChild); // Insert it at the top
+    document.body.insertBefore(greetingElement, document.body.firstChild);
     const timeFormatSelect = document.getElementById("time-format");
     const clockElement = document.getElementById("clock");
     const toggleTimeCheckbox = document.getElementById("toggle-time");
@@ -196,6 +196,9 @@ document.addEventListener("DOMContentLoaded", function() {
             document.body.insertBefore(video, document.body.firstChild);
         } else {
             document.body.style.backgroundImage = `url(${url})`;
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundRepeat = 'no-repeat';
+            document.body.style.backgroundAttachment = 'fixed';
         }
     }
 

@@ -1,18 +1,23 @@
-/* Keyframes for animations */
-@keyframes fadeIn {
-  
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
 
+/* Update the fadeIn animation */
+@keyframes fadeIn { 
+  from { 
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  } 
+  to { 
+    opacity: 1;
+    backdrop-filter: blur(10px);
+  } 
+}
+@keyframes fadeIn2 { from {  opacity: 0;  } to {  opacity: 1;  } }
 @keyframes slideDown {
   0% { transform: translateY(-50px); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }
 }
 
-/* Clock & H1 Animation */
-h1 {
-  animation: fadeIn 2s ease-in-out;
+h1{
+  animation: fadeIn2 2s ease-in-out;
 }
 
 .clock {
@@ -21,17 +26,7 @@ h1 {
   animation: slideDown 1.5s ease;
 }
 
-/* Quick Links Animation */
-.quick-links {
-  margin-top: 40px;
-  animation: fadeIn 2s ease-in-out;
-}
-
-.search-box {
-  margin-top: 20px;
-  animation: fadeIn 2s ease-in-out;
-}
 
 .weather-widget{
-  animation: fadeIn 3.5s ease-in-out;
+  animation: fadeIn2 3.5s ease-in-out;
 }
