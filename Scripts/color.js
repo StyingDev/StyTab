@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Get elements
     const textColorInput = document.getElementById("text-color");
     const weatherWidget = document.getElementById("weather-widget");
     const weatherDetails = weatherWidget ? weatherWidget.querySelectorAll("*") : [];
@@ -7,22 +6,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const quickLinks = quickLinksDiv ? quickLinksDiv.querySelectorAll("a") : [];
     const clock = document.getElementById("clock");
     
-    // Get Save button
     const saveSettingsButton = document.getElementById("save-settings");
 
-    // Load existing text color from localStorage
     const existingTextColor = localStorage.getItem("textColor") || "#FFFFFF";
     
-    // Apply the existing text color on page load
     applyTextColor(existingTextColor);
     textColorInput.value = existingTextColor;
 
-    // Listen for Save button click to apply and save the color
     saveSettingsButton.addEventListener("click", () => {
         const newColor = textColorInput.value.trim();
         if (newColor) {
             applyTextColor(newColor);
-            localStorage.setItem("textColor", newColor); // Save to localStorage
+            localStorage.setItem("textColor", newColor);
         }
     });
 
@@ -31,40 +26,39 @@ document.addEventListener("DOMContentLoaded", function () {
      * @param {string} color 
      */
     function applyTextColor(color) {
+        const svgElements = document.querySelectorAll("svg");
+            svgElements.forEach(svg => {
+                svg.style.color = color;
+            });
+
         if (weatherWidget) {
             weatherWidget.style.setProperty("color", color, "important");
             weatherDetails.forEach(el => el.style.setProperty("color", color, "important"));
         }
 
-        // Apply color to clock (time)
         if (clock) {
             clock.style.setProperty("color", color, "important");
         }
 
-        // Apply color to quick links 
         quickLinks.forEach(link => {
             link.style.color = color;
         });
 
-        // Apply color to all H1 elements
         const h1Elements = document.querySelectorAll("h1");
         h1Elements.forEach(h1 => {
             h1.style.setProperty("color", color, "important");
         });
 
-        // Apply color to search button text
         const searchButton = document.querySelector("#search-form input[type='submit']");
         if (searchButton) {
             searchButton.style.setProperty("color", color, "important");
         }
 
-        // Apply color to search placeholder
         const searchInput = document.getElementById("search-query");
         if (searchInput) {
             searchInput.style.setProperty("color", color, "important"); 
             searchInput.style.setProperty("caret-color", color, "important");
 
-            // placeholder needs CSS pseudo-element
             const styleTag = document.getElementById("dynamic-placeholder-style") || document.createElement("style");
             styleTag.id = "dynamic-placeholder-style";
             styleTag.innerHTML = `
@@ -75,6 +69,42 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
             document.head.appendChild(styleTag);
         }
+        
+        const toggleSliders = document.querySelectorAll(".slider");
+        toggleSliders.forEach(slider => {
+            slider.style.backgroundColor = color;
+        });
+        
+        const ballColor = isLightColor(color) ? "#000000" : "#FFFFFF";
+        let styleTag = document.getElementById("slider-ball-style");
+        if (!styleTag) {
+            styleTag = document.createElement("style");
+            styleTag.id = "slider-ball-style";
+            document.head.appendChild(styleTag);
+        }
+        styleTag.innerHTML = `
+            .slider:before {
+                background-color: ${ballColor} !important;
+            }
+        `;
+        
+        const formElements = document.querySelectorAll("input, select");
+        formElements.forEach(element => {
+            element.style.color = color;
+            element.style.borderColor = color;
+        });
+    }
 
+    function isLightColor(color) {
+        color = color.replace('#', '');
+        if (color.length === 3) {
+            color = color.split('').map(c => c + c).join('');
+        }
+        const r = parseInt(color.substring(0, 2), 16);
+        const g = parseInt(color.substring(2, 4), 16);
+        const b = parseInt(color.substring(4, 6), 16);
+        
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        return brightness > 128;
     }
 });

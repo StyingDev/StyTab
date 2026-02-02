@@ -35,6 +35,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     async function getWeather() {
+        const weatherVisible = localStorage.getItem("weatherVisible") !== 'false';
+        
+        if (!weatherVisible) {
+            console.log('Weather widget is disabled, skipping API call');
+            return;
+        }
+        
+        document.getElementById('weather-temperature').innerText = 'Loading...';
+        document.getElementById('weather-description').innerText = '';
+        
         const apiKey = localStorage.getItem('apiKey') || 'qD9ecsnV7YDX2J0k2GOssB9UNYZ7Z528'; // Free for the normies <3
         const location = localStorage.getItem('location') || '';
         const tempUnit = localStorage.getItem('tempUnit') || 'C';
@@ -68,5 +78,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    getWeather();
+    const initialWeatherVisible = localStorage.getItem("weatherVisible") !== 'false';
+    if (initialWeatherVisible) {
+        getWeather();
+    }
+    
+    window.getWeather = getWeather;
 });

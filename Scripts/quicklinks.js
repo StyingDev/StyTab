@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Set the link to GitHub page (if you are seeing this don't ask why I made it so unconventional.)
     const gitHubUrl = "https://github.com/StyingDev/StyTab"; 
 
-    // Add click event listener
     githubLink.addEventListener("click", function() {
         window.open(gitHubUrl, "_blank");
     });
@@ -48,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function() {
             linkElement.textContent = link.name;
             // linkElement.target = "_blank";
 
-            // Create delete button for all links
             const deleteButton = document.createElement("img");
             deleteButton.src = "icons/Setting-close-icon.svg";
             deleteButton.alt = "Delete Link";
@@ -59,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
             deleteButton.style.marginLeft = "10px";
 
             deleteButton.addEventListener("click", () => {
-                removeQuickLink(index); // Allows removal for all links (predefined and custom)
+                removeQuickLink(index);
             });
 
             const linkWrapper = document.createElement("div");
@@ -67,13 +65,11 @@ document.addEventListener("DOMContentLoaded", function() {
             linkWrapper.appendChild(deleteButton);
             quickLinksContainer.appendChild(linkWrapper); 
 
-            // Append to quick-links section
             const sectionLink = linkElement.cloneNode(true); 
             quickLinksSection.appendChild(sectionLink); 
         });
     }
 
-    // Save QuickLinks to localStorage and update both sections
     function saveQuickLinks(name, url) {
         const quickLinks = JSON.parse(localStorage.getItem("quickLinks")) || [];
         quickLinks.push({ name, url });
@@ -81,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function() {
         loadQuickLinks();
     }
 
-    // Remove QuickLink from localStorage
     function removeQuickLink(index) {
         const quickLinks = JSON.parse(localStorage.getItem("quickLinks")) || [];
         quickLinks.splice(index, 1); 
@@ -89,17 +84,14 @@ document.addEventListener("DOMContentLoaded", function() {
         loadQuickLinks(); 
     }
 
-    // Toggle Quick Links sidebar visibility
     quickLinksIcon.addEventListener("click", () => {
         quickLinksSidebar.classList.toggle("active");
     });
 
-    // Close Quick Links sidebar when the close button is clicked
     closeQuickLinksButton.addEventListener("click", () => {
         quickLinksSidebar.classList.remove("active");
     });
 
-    // Handle button click to add new QuickLink
     addLinkButton.addEventListener("click", () => {
         const name = quicklinkNameInput.value.trim();
         const url = quicklinkUrlInput.value.trim();
