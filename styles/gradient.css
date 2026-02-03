@@ -1,15 +1,152 @@
-/* Animated Gradient */
-.gradient-active {
+body {
+  position: relative;
+  background-color: #1a1a1a; /* Fallback color */
+  transition: background-image 1s ease, background-color 1s ease;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.background-video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.background-video-container video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  transition: opacity 1s ease;
+}
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.gradient-default {
   background: linear-gradient(135deg, #27262a, #489081);
   background-size: 200% 200%;
   animation: gradientAnimation 7.5s ease infinite;
 }
 
-/* Keyframes for gradient animation */
+.gradient-ocean {
+  background: linear-gradient(135deg, #1a2980, #26d0ce);
+  background-size: 200% 200%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+.gradient-sunset {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  background-size: 200% 200%;
+  animation: gradientAnimation 8s ease infinite;
+}
+
+.gradient-nordic {
+  background: linear-gradient(135deg, #2e3440, #4c566a);
+  background-size: 200% 200%;
+  animation: gradientAnimation 12s ease infinite;
+}
+
+.gradient-purple-haze {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  background-size: 200% 200%;
+  animation: gradientAnimation 9s ease infinite;
+}
+
+.gradient-static-dark {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+}
+
+.gradient-static-light {
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+}
+
+.gradient-static-green {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+}
+
+.overlay-dark {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.overlay-light {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.overlay-blur {
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
 @keyframes gradientAnimation {
-  0% { background-position: 0% 0%; }
-  25% { background-position: 100% 0%; }
-  50% { background-position: 100% 100%; }
-  75% { background-position: 0% 100%; }
-  100% { background-position: 0% 0%; }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes gradientPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.gradient-pulse {
+  animation: gradientPulse 3s ease-in-out infinite;
+}
+
+.background-loading {
+  position: relative;
+}
+
+.background-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: loadingShimmer 1.5s infinite;
+  z-index: -1;
+}
+
+@keyframes loadingShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@media (max-width: 768px) {
+  .background-video-container video {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+  }
+}
+
+@media print {
+  .background-video-container,
+  .background-overlay,
+  .gradient-active {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+  }
 }

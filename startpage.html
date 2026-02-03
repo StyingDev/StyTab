@@ -82,91 +82,152 @@
     <div class="settings" id="close-settings">
       <img src="icons/Setting-close-icon.svg" alt="Close Settings" style="width: 24px; height: 24px;">
     </div>
-  
+    
     <h2>Settings</h2>
 
-    <label for="greeting">Custom Greeting:</label>
-    <input type="text" id="greeting" placeholder="Hello!">
+    <!-- Display Settings Section -->
+    <details class="settings-section" open>
+      <summary class="settings-section-header">
+        <h3>Display Settings</h3>
+        <svg class="collapse-icon" viewBox="0 0 24 24" width="16" height="16">
+          <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z" fill="white"/>
+        </svg>
+      </summary>
+      
+      <div class="settings-section-content">
+        <div class="toggle-container">
+          <label for="toggle-greeting">Show Greeting:</label>
+          <label class="switch">
+            <input type="checkbox" id="toggle-greeting">
+            <span class="slider"></span>
+          </label>
+        </div>
 
+        <div class="toggle-container">
+          <label for="toggle-time">Show Time:</label>
+          <label class="switch">
+            <input type="checkbox" id="toggle-time">
+            <span class="slider"></span>
+          </label>
+        </div>
 
-    <label for="background" title="Supported formats: Images (.jpg, .png, .gif, etc) and MP4 videos">Background Image URL:</label>
-    <input type="text" id="background" placeholder="Background URL">
-
-    <label for="text-color">Custom Text Color (Hex):</label>
-    <input type="text" id="text-color" placeholder="#FFFFFF">
-
-    
-    <label for="search-engine">Search Engine:</label>
-    <select id="search-engine">
-        <option value="https://www.google.com/search">Google</option>
-        <option value="https://duckduckgo.com">DuckDuckGo</option>
-        <option value="https://www.bing.com/search">Bing</option>
-        <option value="https://search.yahoo.com/search">Yahoo</option>
-        <option value="https://www.qwant.com/">Qwant</option>
-        <option value="https://www.startpage.com/search">StartPage</option>
-        <option value="https://priv.au/search">Priv.au</option>
-        <option value="https://search.brave.com/search">Brave Search</option>
-        <option value="https://www.mojeek.com/search">Mojeek</option>
-        <option value="https://metager.org/meta/meta.ger3">MetaGer</option>
-        <option value="https://searx.be/search">Searx.be</option>
-        <option value="https://search.unlocked.link/search">Unlocked.link</option>
-        <option value="https://searx.tiekoetter.com/search">Tiekoetter</option>
-        <option value="https://searx.dresden.network/search">Dresden.network</option>
-    </select>
-
-    <label for="time-format">Time Format:</label>
-    <select id="time-format">
-        <option value="12">12-hour</option>
-        <option value="24">24-hour</option>
-    </select>
-
-
-    <h2>Display Settings</h2>
-
-  <div class="toggle-container">
-    <label for="toggle-greeting">Show Greeting:</label>
-    <label class="switch">
-        <input type="checkbox" id="toggle-greeting">
-        <span class="slider"></span>
-    </label>
-  </div>
-
-    <div class="toggle-container">
-      <label for="toggle-time">Show Time:</label>
-      <label class="switch">
-          <input type="checkbox" id="toggle-time">
-          <span class="slider"></span>
-      </label>
-    </div>
-
-
-    <!-- Styled toggle switch for search bar -->
-    <div class="toggle-container">
-        <label for="toggle-search">Show Search Bar:</label>
-        <label class="switch">
+        <div class="toggle-container">
+          <label for="toggle-search">Show Search Bar:</label>
+          <label class="switch">
             <input type="checkbox" id="toggle-search">
             <span class="slider"></span>
-        </label>
-    </div>
+          </label>
+        </div>
 
-    <div class="toggle-container">
-      <label for="toggle-quick-links">Show Quick Links:</label>
-      <label class="switch">
-          <input type="checkbox" id="toggle-quick-links">
-          <span class="slider"></span>
-      </label>
-    </div>
+        <div class="toggle-container">
+          <label for="toggle-quick-links">Show Quick Links:</label>
+          <label class="switch">
+            <input type="checkbox" id="toggle-quick-links">
+            <span class="slider"></span>
+          </label>
+        </div>
 
-    <div class="toggle-container">
-      <label for="toggle-weather">Show Weather:</label>
-      <label class="switch">
-          <input type="checkbox" id="toggle-weather">
-          <span class="slider"></span>
-      </label>
-    </div>
-    <button class="save-settings" id="save-settings">Save</button>    
+        <div class="toggle-container">
+          <label for="toggle-weather">Show Weather:</label>
+          <label class="switch">
+            <input type="checkbox" id="toggle-weather">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </details>
+
+    <!-- Configurations Section -->
+    <details class="settings-section">
+      <summary class="settings-section-header">
+        <h3>Configurations</h3>
+        <svg class="collapse-icon" viewBox="0 0 24 24" width="16" height="16">
+          <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z" fill="white"/>
+        </svg>
+      </summary>
+      
+      <div class="settings-section-content">
+        <label for="greeting">Custom Greeting:</label>
+        <input type="text" id="greeting" placeholder="Hello!">
+
+        <label for="text-color">Custom Text Color (Hex):</label>
+        <input type="text" id="text-color" placeholder="#FFFFFF">
+        
+        <label for="search-engine">Search Engine:</label>
+        <select id="search-engine">
+          <option value="https://www.google.com/search">Google</option>
+          <option value="https://duckduckgo.com">DuckDuckGo</option>
+          <option value="https://www.bing.com/search">Bing</option>
+          <option value="https://search.yahoo.com/search">Yahoo</option>
+          <option value="https://www.qwant.com/">Qwant</option>
+          <option value="https://www.startpage.com/search">StartPage</option>
+          <option value="https://priv.au/search">Priv.au</option>
+          <option value="https://search.brave.com/search">Brave Search</option>
+          <option value="https://www.mojeek.com/search">Mojeek</option>
+          <option value="https://metager.org/meta/meta.ger3">MetaGer</option>
+          <option value="https://searx.be/search">Searx.be</option>
+          <option value="https://search.unlocked.link/search">Unlocked.link</option>
+          <option value="https://searx.tiekoetter.com/search">Tiekoetter</option>
+          <option value="https://searx.dresden.network/search">Dresden.network</option>
+        </select>
+
+        <label for="time-format">Time Format:</label>
+        <select id="time-format">
+          <option value="12">12-hour</option>
+          <option value="24">24-hour</option>
+        </select>
+      </div>
+    </details>
+
+    <!-- Background Settings Section -->
+    <details class="settings-section">
+      <summary class="settings-section-header">
+        <h3>Background Settings</h3>
+        <svg class="collapse-icon" viewBox="0 0 24 24" width="16" height="16">
+          <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z" fill="white"/>
+        </svg>
+      </summary>
+      
+      <div class="settings-section-content">
+        <label for="background-type">Background Type:</label>
+        <select id="background-type">
+          <option value="gradient">Animated Gradient</option>
+          <option value="custom">Custom Background</option>
+        </select>
+
+        <div id="gradient-options">
+          <label for="gradient-select">Gradient Theme:</label>
+          <select id="gradient-select">
+            <option value="default">Default (Dark Teal)</option>
+            <option value="ocean">Ocean Blue</option>
+            <option value="sunset">Sunset Orange</option>
+            <option value="nordic">Nordic Dark</option>
+            <option value="purple-haze">Purple Haze</option>
+            <option value="static-dark">Static Dark</option>
+            <option value="static-light">Static Light</option>
+            <option value="static-green">Static Green</option>
+          </select>
+        </div>
+
+        <div id="custom-input-container" style="display: none;">
+          <label for="background">Custom Background:</label>
+          <input type="text" id="background" placeholder="Image/Video URL or Color (#hex)">
+          <small>Supports: Images (.jpg, .png, .gif), Videos (.mp4, .webm), or Colors (#FF0000)</small>
+        </div>
+
+        <div class="visual-effects">
+          <label for="overlay-opacity">Overlay Opacity: <span id="overlay-value">0.3</span></label>
+          <input type="range" id="overlay-opacity" min="0" max="0.8" step="0.1" value="0.3">
+          
+          <label for="blur-intensity">Background Blur: <span id="blur-value">0px</span></label>
+          <input type="range" id="blur-intensity" min="0" max="20" step="1" value="0">
+        </div>
+      </div>
+    </details>
+
+    <!-- Save Button (Outside all sections) -->
+    <button class="save-settings" id="save-settings">Save All Settings</button>    
   </div>
-
 
   <!-- QuickLinks Sidebar -->
   <div class="quicklinks-sidebar" id="quicklinks-sidebar">
@@ -197,14 +258,13 @@
   <script src="Scripts/settings_search.js"></script>
   <script src="Scripts/settings_visibility.js"></script>
   <script src="Scripts/settings_time.js"></script>
-  <script src="Scripts/settings_save.js"></script>
 
   <script src="Scripts/clock.js"></script>
-  <!-- <script src="Scripts/settings.js"></script> -->
   <script src="Scripts/quicklinks.js"></script>
   <script src="Scripts/weather.js"></script>
   <script src="Scripts/color.js"></script>
   <script src="Scripts/no_highlight.js"></script>
+  <script src="Scripts/background-manager.js"></script>
 
 </body>
 </html>

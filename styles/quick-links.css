@@ -22,8 +22,7 @@
   margin-top: 20px;
   flex-shrink: 0;
   white-space: nowrap;
-  /* Add fadeIn animation to links too if needed */
-  animation: fadeIn 2.5s ease-in-out forwards;
+  animation: fadeIn 2s ease-in-out forwards;
 }
 
 .quick-links a:hover {
