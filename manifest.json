@@ -8,7 +8,8 @@
   },
   "permissions": [
     "tabs",
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "host_permissions": [
     "https://api.pirateweather.net/*"
@@ -29,7 +30,10 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "o2860bs4m@mozmail.com"
+      "id": "o2860bs4m@mozmail.com",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
     }
   }
 }

@@ -15,60 +15,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
     saveSettingsButton.addEventListener("click", () => {
         const newColor = textColorInput.value.trim();
-        if (newColor) {
+        if (newColor && isValidHexColor(newColor)) {
             applyTextColor(newColor);
             localStorage.setItem("textColor", newColor);
         }
     });
 
-    /**
-     * Function to apply text color to specific elements on the page
-     * @param {string} color 
-     */
     function applyTextColor(color) {
-        const svgElements = document.querySelectorAll("svg");
-            svgElements.forEach(svg => {
-                svg.style.color = color;
-            });
+        document.querySelectorAll("svg").forEach(svg => {
+            svg.style.color = color;
+        });
 
         if (weatherWidget) {
-            weatherWidget.style.setProperty("color", color, "important");
-            weatherDetails.forEach(el => el.style.setProperty("color", color, "important"));
+            weatherWidget.style.color = color;
+            weatherDetails.forEach(el => el.style.color = color);
         }
 
         if (clock) {
-            clock.style.setProperty("color", color, "important");
+            clock.style.color = color;
         }
 
         quickLinks.forEach(link => {
             link.style.color = color;
         });
 
-        const h1Elements = document.querySelectorAll("h1");
-        h1Elements.forEach(h1 => {
-            h1.style.setProperty("color", color, "important");
+        document.querySelectorAll("h1").forEach(h1 => {
+            h1.style.color = color;
         });
 
         const searchButton = document.querySelector("#search-form input[type='submit']");
         if (searchButton) {
-            searchButton.style.setProperty("color", color, "important");
+            searchButton.style.color = color;
         }
 
         const searchInput = document.getElementById("search-query");
         if (searchInput) {
-            searchInput.style.setProperty("color", color, "important"); 
-            searchInput.style.setProperty("caret-color", color, "important");
-
-            const styleTag = document.getElementById("dynamic-placeholder-style") || document.createElement("style");
-            styleTag.id = "dynamic-placeholder-style";
-            styleTag.innerHTML = `
-                #search-query::placeholder {
-                    color: ${color} !important;
-                    opacity: 0.6;
-                }
-            `;
-            document.head.appendChild(styleTag);
+            searchInput.style.color = color;
+            searchInput.style.caretColor = color;
+            
+            const placeholderStyle = document.getElementById("placeholder-color-style") || document.createElement("style");
+            placeholderStyle.id = "placeholder-color-style";
+            placeholderStyle.textContent = `#search-query::placeholder { color: ${color} !important; opacity: 0.6; }`;
+            document.head.appendChild(placeholderStyle);
         }
-        
+    }
+
+    function isValidHexColor(color) {
+        return /^#([A-Fa-f0-9]{3}){1,2}$/.test(color);
     }
 });
