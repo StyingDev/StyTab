@@ -1,40 +1,45 @@
-# StyTab 🌐📑
 
-A minimalist and customizable new tab page extension for your browser that enhances your browsing experience with style.
+# StyTab!!!
 
-![Version](https://img.shields.io/badge/version-1.2.7-blue)
+StyTab is a 'minimalist' new tab page that gives you quick links, weather, and a search bar (personally not a big fan of it) and whatever else it has
+
+![Version](https://img.shields.io/badge/version-1.2.9-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+| Browser | Download |
+|---------|----------|
+| Firefox & Gecko-based | [<img src="./Readme Assets/download-firefox.svg" height="53" alt="Firefox Download">](https://addons.mozilla.org/en-US/firefox/addon/stytab/) |
 
-| Browser                              | Download                                                                                                                                                                |
-| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Gecko-based (Firefox and Alternatives) | [<img src="./Readme Assets/download-firefox.svg" height="53" alt="Firefox Download">](https://addons.mozilla.org/en-US/firefox/addon/stytab/)                            |
+## Table of Contents
+
+I. [Features](#i-features)  
+II. [Installation](#ii-installation)  
+III. [Quick Start](#iii-quick-start)  
+IV. [Configuration](#iv-configuration)  
+V. [Development](#v-development)  
+VI. [License](#vi-license)  
+
+<div style="display: flex; gap: 10px;">
+  <img src="https://i.imgur.com/zXbxB6g.png"/>
+</div>
+
+---
+
+## I. Features
+
+### Core Components
+- **Custom Search Bar** - Choose from 14+ search engines (Google, DuckDuckGo, Brave, etc.)
+- **Quick Links System** - Organize and access favorite websites with one click
+- **Weather Widget** - Real-time weather information powered by Pirate Weather API
+- **Dynamic Backgrounds** - Animated gradients, custom images, videos, or solid colors
+- **Time & Date Display** - Configurable 12/24-hour clock with weekday
+- **Visual Customization** - Adjust text colors, overlay opacity, and background blur effects
 
 
-## ✨ Features
-
-- **Customizable Search Bar**: Choose from multiple search engines including Google, DuckDuckGo, Brave, and more
-- **Quick Links**: Easy access to your favorite websites
-- **Weather Widget**: Real-time weather information using AccuWeather API
-- **Custom Backgrounds**: Set your own background image or video
-- **Time Display**: Configurable 12/24-hour clock format with day of the week
-- **Color Customization**: Personalize text colors to match your theme
-- **Responsive Design**: Works seamlessly across different screen sizes
-
-
-## 🌤️ Weather Widget Setup
-
-1. Get an API key from [Pirate Weather](https://pirate-weather.apiable.io/)
-2. Find your LatLong from [GPS Coordinates](https://www.gps-coordinates.net/)
-3. Click the weather widget to configure:
-   - Enter your API key
-   - Enter your LatLong
-   - Choose temperature unit (Celsius/Fahrenheit)
-
-## 🚀 Installation
+## II. Installation
 
 <details>
-<summary><h2>📘 Firefox Based</h2></summary>
+<summary><h3>A) Firefox Based</h3></summary>
 
 ### Option 1: Official Store Download
 1. Visit the [Firefox Addon Store](https://addons.mozilla.org/en-US/firefox/addon/stytab/)
@@ -49,10 +54,10 @@ A minimalist and customizable new tab page extension for your browser that enhan
 </details>
 
 <details>
-<summary><h2>🌐 Chromium Based (Unstable)</h2></summary>
+<summary><h3>B) Chromium Based (Unstable)</h3></summary>
 
 ### Option 1: Official Store Download
-> ⚠ Not currently available in official stores
+> ⚠ Not currently available in official stores, uploading on the Chrome Webstore costs money which I am too broke to spend.
 
 ### Option 2: Manual Installation
 1. Download the latest release
@@ -62,40 +67,81 @@ A minimalist and customizable new tab page extension for your browser that enhan
 5. Select the downloaded folder
 </details>
 
+## III. Quick Start
+
+### Weather Setup
+1. **Optional API Key**: Visit [Pirate Weather](https://pirate-weather.apiable.io/) for a free API key
+> It is optional because I did provide a free one, but there is no guarantee it will always be available.
+2. **Location**: Find coordinates at [GPS Coordinates](https://www.gps-coordinates.net/)
+3. **Configuration**: Click the weather widget, enter details, and save
 
 
-## 🎨 Showcase
-<div style="display: flex; gap: 10px;">
-  <img src="https://i.imgur.com/zXbxB6g.png"/>
-</div>
+## IV. Configuration
 
+### Display Settings
+- Show/Hide greeting, clock, search bar, quick links, and weather widget
 
-## 🛠️ Development
+### Configurations
+- **Custom Greeting**: Personalize the welcome message
+- **Text Color**: Set custom hex color for all text elements
+- **Search Engine**: Choose from privacy-focused and mainstream options
+- **Time Format**: Switch between 12-hour and 24-hour formats
 
-To modify or contribute to StyTab:
+### Background Settings
+- **Type Selection**: Choose between animated gradients or custom backgrounds
+- **Gradient Themes**: 8 preset animated gradients
+- **Custom Backgrounds**: Support for:
+  - Image URLs (.jpg, .png, .gif, .webp)
+  - Video URLs (.mp4, .webm, .ogg)
+  - Solid colors (hex codes, e.g., #FF0000)
+- **Visual Effects**:
+  - Overlay opacity (0-0.8)
+  - Background blur (0-20px)
 
-1. Clone the repository:
+### Quick Links Management
+- Add, edit, and remove website shortcuts
+- Predefined defaults (Reddit, GitHub, YouTube)
+- Drag-and-drop organization (planned)
+- Export/import functionality (planned)
+
+## V. Development
+
+### Building from Source
 ```bash
 git clone https://github.com/StyingDev/StyTab.git
+cd StyTab
 ```
 
-2. Make your changes
-3. Test the extension locally using the installation steps above
-4. Submit a pull request
+#### Firefox Installation:
+1. Navigate to `about:debugging`
+2. Click "This Firefox" (or your Firefox fork)
+3. Select "Load Temporary Add-on"
+4. Choose the `manifest.json` file in the StyTab folder
 
-## 📝 License
 
-This project is licensed under the MIT License, check out the [LICENSE](LICENSE) file for details.
+### Project Structure
+```
+StyTab/
+├── scripts/           # JavaScript modules
+├── styles/            # CSS stylesheets
+├── icons/             # Extension icons
+├── fonts/             # Custom fonts
+├── manifest.json      # Extension manifest
+├── startpage.html     # Main interface
+└── popup.html         # Extension popup
+```
 
-## 🙏 Appreciation
 
-- Weather data provided by [Pirate Weather](pirateweather.net/)
-- Icons provided by [SVG Repo](https://www.svgrepo.com/)
-- Thanks to [mtab](https://github.com/maxhu08/mtab) for inspirations
+## VI. License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+### Acknowledgments
+- Weather data provided by [Pirate Weather](https://pirateweather.net/)
+- Icons sourced from [SVG Repo](https://www.svgrepo.com/)
+- Inspired by [mtab](https://github.com/maxhu08/mtab)
+- Font: Quicksand by Andrew Paglinawan
+
 ---
 
-Enjoy your new personalized startpage with **StyTab**! 🎉 <br>
-Made with ❤️ by [StyingDev](https://github.com/StyingDev)
-
-
-
+Made by [StyingDev](https://github.com/StyingDev)
