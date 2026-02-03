@@ -95,7 +95,6 @@ class BackgroundManager {
       customInput.style.display = isCustom ? 'block' : 'none';
     }
     
-    // Also show/hide gradient select
     if (this.gradientSelect && this.gradientSelect.parentElement) {
       this.gradientSelect.parentElement.style.display = isCustom ? 'none' : 'block';
     }
@@ -124,14 +123,12 @@ class BackgroundManager {
       type: this.backgroundType ? this.backgroundType.value : 'gradient'
     };
     
-    // Save to localStorage
     localStorage.setItem('background', settings.url);
     localStorage.setItem('gradient', settings.gradient);
     localStorage.setItem('overlayOpacity', settings.overlayOpacity);
     localStorage.setItem('blurIntensity', settings.blurIntensity);
     localStorage.setItem('backgroundType', settings.type);
     
-    // Apply settings
     this.applyBackground(settings);
     
     if (typeof closeSidebar === 'function') {
@@ -142,14 +139,12 @@ class BackgroundManager {
   applyBackground(settings) {
     this.removeBackground();
     
-    // Apply the main background
     if (settings.type === 'gradient') {
       this.applyGradient(settings.gradient);
     } else if (settings.type === 'custom') {
       this.applyCustom(settings.url);
     }
     
-    // Apply overlay and blur effects
     this.applyOverlay(settings.overlayOpacity);
     this.applyBlur(settings.blurIntensity);
   }
@@ -166,7 +161,6 @@ class BackgroundManager {
       return;
     }
     
-    // Check if it's a color
     if (url.startsWith('#')) {
       document.body.classList.remove('gradient-active');
       document.body.style.backgroundImage = '';
@@ -174,13 +168,11 @@ class BackgroundManager {
       return;
     }
     
-    // Check if it's a video
     if (url.toLowerCase().match(/\.(mp4|webm|ogg|mov)$/)) {
       this.applyVideo(url);
       return;
     }
     
-    // Default to image
     this.applyImage(url);
   }
   
@@ -209,7 +201,9 @@ class BackgroundManager {
       document.body.insertBefore(this.videoContainer, document.body.firstChild);
     }
     
-    this.videoContainer.innerHTML = '';
+    while (this.videoContainer.firstChild) {
+      this.videoContainer.removeChild(this.videoContainer.firstChild);
+    }
     
     const video = document.createElement('video');
     video.autoplay = true;
@@ -234,7 +228,14 @@ class BackgroundManager {
     
     video.onloadeddata = () => {
       document.body.classList.remove('gradient-active');
+      this.ensureOverlayOnTop();
     };
+  }
+
+  ensureOverlayOnTop() {
+    if (this.overlayElement && this.videoContainer) {
+      this.overlayElement.style.zIndex = '-1';
+    }
   }
   
   applyOverlay(opacity) {
@@ -252,7 +253,6 @@ class BackgroundManager {
       this.overlayElement.style.backdropFilter = `blur(${intensity}px)`;
       this.overlayElement.style.webkitBackdropFilter = `blur(${intensity}px)`;
     } else if (this.overlayElement) {
-      // Remove blur if intensity is 0
       this.overlayElement.style.backdropFilter = 'none';
       this.overlayElement.style.webkitBackdropFilter = 'none';
     }
