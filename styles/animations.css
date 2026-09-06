@@ -24,6 +24,8 @@ h1{
   font-size: 36px;
   margin-bottom: 20px;
   animation: slideDown 1.5s ease;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
 
