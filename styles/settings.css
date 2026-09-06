@@ -61,10 +61,16 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover/focus states */
+/* Focus state for inputs/selects */
 .settings-sidebar input[type="text"]:focus,
 .settings-sidebar input[type="color"]:focus,
-.settings-sidebar select:focus,
+.settings-sidebar select:focus {
+  background-color: rgba(255, 255, 255, 0.070);
+  box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.2);
+  outline: none;
+}
+
+/* Hover state for buttons */
 .settings-sidebar button:hover {
   background-color: rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
@@ -99,11 +105,11 @@
 #close-settings { position: absolute; top: 20px; right: 20px; background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
 
 /* Sidebar Input and Button Styles */
-.settings-sidebar label { display: block; margin: 15px 0 5px; }
+.settings-sidebar label { display: block; margin: 15px 0 5px; font-size: 16px; font-weight: 500; }
 
 /* Styling for toggle container */
 .toggle-container { display: flex; align-items: center; margin: 15px 0; }
-.toggle-container label { flex: 1; color: #fff; font-size: 16px; }
+.toggle-container label { flex: 1; color: #fff; font-size: 16px; font-weight: 500; }
 
 /* Custom toggle switch style */
 .switch { position: relative; display: inline-block; width: 50px; height: 26px; }
@@ -116,11 +122,15 @@ input:checked + .slider:before { transform: translateX(78px); }
 .settings-sidebar .or-divider { text-align: center; margin-bottom: 10px; }
 .settings-sidebar .or-divider span { color: #888; }
 
-
-small {
-  display: block;
-  margin-top: -8px;
-  margin-bottom: 15px;
+/* Sidebar/modal panel titles ("Settings", "QuickLinks", "Weather Settings") had
+   no sizing of their own and fell back to the browser's default h2, which
+   didn't sit in any real hierarchy next to the 16px section headers below
+   them or the 48px greeting above the page. */
+.settings-sidebar h2,
+.quicklinks-sidebar h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 20px;
 }
 
 .settings-section {

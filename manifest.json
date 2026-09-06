@@ -7,8 +7,6 @@
     "newtab": "startpage.html"
   },
   "permissions": [
-    "tabs",
-    "activeTab",
     "storage"
   ],
   "host_permissions": [

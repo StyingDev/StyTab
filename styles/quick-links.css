@@ -113,6 +113,14 @@
 
 
 
+/* QuickLinks labels ("Link Name:", "Link URL:") */
+.quicklinks-sidebar label {
+  display: block;
+  margin: 15px 0 5px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
 /* QuickLinks inputs and buttons */
 .quicklinks-sidebar input[type="text"],
 .quicklinks-sidebar input[type="url"],
@@ -139,6 +147,15 @@
 .quicklinks-sidebar button:hover {
     background-color: rgba(255, 255, 255, 0.2);
     box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Focus state for inputs/selects */
+.quicklinks-sidebar input[type="text"]:focus,
+.quicklinks-sidebar input[type="url"]:focus,
+.quicklinks-sidebar select:focus {
+    background-color: rgba(255, 255, 255, 0.070);
+    box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.2);
+    outline: none;
 }
 
 /* Active state */

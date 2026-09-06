@@ -2,77 +2,136 @@
   display: none;
 }
 
+/* Unified pill: icon, input and submit button share one glass surface
+   instead of two separate floating controls. */
+.search-box #search-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 420px;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 8px 8px 8px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.search-box #search-form:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.search-box #search-form:focus-within {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(255, 255, 255, 0.12);
+}
+
+.search-box .search-icon {
+  flex-shrink: 0;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+.search-box #search-form:focus-within .search-icon {
+  opacity: 0.9;
+}
+
 .search-box #search-query {
-  width: 400px;
-  padding: 12px;
-  font-size: 18px;
+  flex: 1;
+  min-width: 0;
   border: none;
-  border-radius: 25px;
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
-  margin-bottom: 10px;
-  color: #fff;
-  animation: fadeIn 1.5s ease-in-out;
-}
-
-.search-box #search-query:hover,
-.search-box #search-query:focus {
   outline: none;
-  background-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(15px);
-}
-
-/* Search Button(for submit button inside .search-box) */
-.search-box input[type="submit"] {
-  padding: 12px 20px;
-  font-size: 18px;
-  border: none;
-  border-radius: 25px;
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  background: transparent;
+  font-size: 17px;
+  font-family: inherit;
   color: #fff;
-  margin-left: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  animation: fadeIn 1.5s ease-in-out;
+  padding: 4px 0;
 }
 
-.search-box input[type="submit"]:hover,
-.search-box input[type="submit"]:focus {
-  background-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(15px);
+.search-box #search-query::placeholder {
+  color: currentColor;
+  opacity: 0.55;
+}
+
+.search-box .search-submit {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.search-box .search-submit svg {
+  transition: transform 0.25s ease;
+}
+
+.search-box .search-submit:hover,
+.search-box .search-submit:focus-visible {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: scale(1.03);
+}
+
+.search-box .search-submit:hover svg {
+  transform: translateX(1px);
+}
+
+.search-box .search-submit:active {
+  transform: scale(0.95);
 }
 
 /* Media Queries */
 @media (max-width: 768px) {
-  .search-box #search-query {
-    width: 80%;
-    font-size: 16px;
-    padding: 10px;
+  .search-box #search-form {
+    width: 90%;
+    padding: 6px 6px 6px 16px;
   }
 
-  .search-box input[type="submit"] {
-    padding: 10px 15px;
+  .search-box #search-query {
     font-size: 16px;
-    margin-left: 8px;
+  }
+
+  .search-box .search-submit {
+    width: 34px;
+    height: 34px;
   }
 }
 
 @media (max-width: 480px) {
-  .search-box #search-query {
+  .search-box #search-form {
     width: 100%;
-    font-size: 14px;
-    padding: 8px;
+    padding: 5px 5px 5px 14px;
+    gap: 8px;
   }
 
-  .search-box input[type="submit"] {
-    padding: 8px 12px;
+  .search-box .search-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .search-box #search-query {
     font-size: 14px;
-    margin-left: 5px;
+  }
+
+  .search-box .search-submit {
+    width: 30px;
+    height: 30px;
+  }
+
+  .search-box .search-submit svg {
+    width: 15px;
+    height: 15px;
   }
 }

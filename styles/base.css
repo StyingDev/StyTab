@@ -15,15 +15,27 @@ body {
   height: 100vh;
   margin: 0;
   overflow: hidden;
+  line-height: 1.5;
   transition: background 1s ease-in-out;
 }
 
 h1 {
   font-size: 48px;
+  line-height: 1.2;
   margin-bottom: 20px;
 }
 
 #greeting-display,
 #clock {
   margin: 0;
+  line-height: 1.2;
+}
+
+/* Lighten default placeholder text (browsers default to a dull grey
+   that reads muddy against the frosted-glass inputs) so it stays legible
+   but still visually distinct from real input text. */
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+  opacity: 1;
 }

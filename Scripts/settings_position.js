@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const DEFAULTS = {
     "greeting-display":    { x: 50, y: 41 },
     "clock":               { x: 50, y: 50 },
-    "search-box":          { x: 50, y: 76 },
+    "search-box":          { x: 50, y: 70 },
     "quick-links-section": { x: 50, y: 60 },
     "weather-widget":      { x: 3.5, y: 5 },
     "spotify-widget":      { x: 10, y: 88 },

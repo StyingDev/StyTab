@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
             h1.style.color = color;
         });
 
-        const searchButton = document.querySelector("#search-form input[type='submit']");
+        const searchButton = document.querySelector("#search-form .search-submit");
         if (searchButton) {
             searchButton.style.color = color;
         }

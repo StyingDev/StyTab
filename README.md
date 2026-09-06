@@ -1,9 +1,8 @@
-
 # StyTab!!!
 
 StyTab is a 'minimalist' new tab page that gives you quick links, weather, and a search bar (personally not a big fan of it) and whatever else it has
 
-![Version](https://img.shields.io/badge/version-1.5.6-blue)
+![Version](https://img.shields.io/badge/version-1.5.7-blue)  
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 | Browser | Download |
@@ -17,7 +16,7 @@ II. [Installation](#ii-installation)
 III. [Quick Start](#iii-quick-start)  
 IV. [Configuration](#iv-configuration)  
 V. [Development](#v-development)  
-VI. [License](#vi-license)  
+VI. [License](#vi-license)
 
 <div style="display: flex; gap: 10px;">
   <img src="https://i.imgur.com/zXbxB6g.png"/>
@@ -28,96 +27,114 @@ VI. [License](#vi-license)
 ## I. Features
 
 ### Core Components
-- **Custom Search Bar** - Choose from 14+ search engines (Google, DuckDuckGo, Brave, etc.)
-- **Quick Links System** - Organize and access favorite websites with one click
-- **Weather Widget** - Real-time weather information powered by Pirate Weather API
-- **Dynamic Backgrounds** - Animated gradients, custom images, videos, or solid colors
-- **Time & Date Display** - Configurable 12/24-hour clock with weekday
-- **Visual Customization** - Adjust text colors, overlay opacity, and background blur effects
 
+-   **Custom Search Bar** - Choose from 14+ search engines (Google, DuckDuckGo, Brave, etc.)
+-   **Quick Links System** - Organize and access favorite websites with one click
+-   **Weather Widget** - Real-time weather information powered by Pirate Weather API
+-   **Dynamic Backgrounds** - Animated gradients, custom images, videos, or solid colors
+-   **Time & Date Display** - Configurable 12/24-hour clock with weekday
+-   **Spotify Widget** (Premium) - See and control your currently playing track right from the new tab page
+-   **Visual Customization** - Adjust text colors, overlay opacity, and background blur effects
 
 ## II. Installation
 
-<details>
-<summary><h3>A) Firefox Based</h3></summary>
+### A) Firefox Based
 
 ### Option 1: Official Store Download
 1. Visit the [Firefox Addon Store](https://addons.mozilla.org/en-US/firefox/addon/stytab/)
 2. Click "Add to Firefox"
 
 ### Option 2: Manual Installation
-1. Download the latest release
-2. Navigate to `about:debugging`
-3. Click "This Firefox"
-4. Click "Load Temporary Add-on"
-5. Select any file from the downloaded folder
-</details>
 
-<details>
-<summary><h3>B) Chromium Based (Unstable)</h3></summary>
+1.  Download the latest release
+2.  Navigate to `about:debugging`
+3.  Click "This Firefox"
+4.  Click "Load Temporary Add-on"
+5.  Select any file from the downloaded folder
+
+### B) Chromium Based (Unstable)
 
 ### Option 1: Official Store Download
+
 > ⚠ Not currently available in official stores, uploading on the Chrome Webstore costs money which I am too broke to spend.
 
 ### Option 2: Manual Installation
-1. Download the latest release
-2. Navigate to `chrome://extensions/`
-3. Enable "Developer mode"
-4. Click "Load unpacked"
-5. Select the downloaded folder
-</details>
+
+1.  Download the latest release
+2.  Navigate to `chrome://extensions/`
+3.  Enable "Developer mode"
+4.  Click "Load unpacked"
+5.  Select the downloaded folder
 
 ## III. Quick Start
 
 ### Weather Setup
-1. **Optional API Key**: Visit [Pirate Weather](https://pirate-weather.apiable.io/) for a free API key
-> It is optional because I did provide a free one, but there is no guarantee it will always be available.
-2. **Location**: Find coordinates at [GPS Coordinates](https://www.gps-coordinates.net/)
-3. **Configuration**: Click the weather widget, enter details, and save
 
+1.  **Optional API Key**: Visit [Pirate Weather](https://pirate-weather.apiable.io/) for a free API key
+
+> It is optional because I did provide a free one, but there is no guarantee it will always be available.
+
+2.  **Location**: Find coordinates at [GPS Coordinates](https://www.gps-coordinates.net/)
+3.  **Configuration**: Click the weather widget, enter details, and save
+
+### Spotify Setup
+
+> Requires a Spotify Premium account, I tried my best trying to get free users get it but those pieces of shits at Spotify basically made it practically not viable. Your best bet for now is have a friend who has premium add you to their apps authorized users and you use their Client ID.
+
+1.  **Quick Connect**: Enable "Show Spotify" in Display Settings, then click "Connect Spotify" and log in. A shared Client ID is provided out of the box, so no setup is required.
+2.  **Use Your Own App**: Open the Spotify section in Settings and:
+    -   Click "Open Spotify Dashboard" and create an app (check the Web API scope)
+    -   Copy the provided Redirect URI into your app’s Redirect URIs field
+    -   Paste your app’s Client ID into the Client ID field
+3.  **Player Layout**: Choose between Compact, Card, or Minimal layouts
+4.  **Appearance**: Toggle controls-on-hover, progress bar-on-hover, hidden widget background, and disabled controls independently
 
 ## IV. Configuration
 
 ### Display Settings
-- Show/Hide greeting, clock, search bar, quick links, and weather widget
+
+-   Show/Hide greeting, clock, search bar, quick links, and weather widget
 
 ### Configurations
-- **Custom Greeting**: Personalize the welcome message
-- **Text Color**: Set custom hex color for all text elements
-- **Search Engine**: Choose from privacy-focused and mainstream options
-- **Time Format**: Switch between 12-hour and 24-hour formats
+
+-   **Custom Greeting**: Personalize the welcome message
+-   **Text Color**: Set custom hex color for all text elements
+-   **Search Engine**: Choose from privacy-focused and mainstream options
+-   **Time Format**: Switch between 12-hour and 24-hour formats
+-   **Spotify**: Connect an account (shared or your own app’s Client ID), pick a player layout, and toggle hover-only controls, progress bar visibility, widget background, and playback controls
 
 ### Background Settings
-- **Type Selection**: Choose between animated gradients or custom backgrounds
-- **Gradient Themes**: 8 preset animated gradients
-- **Custom Backgrounds**: Support for:
-  - Image URLs (.jpg, .png, .gif, .webp)
-  - Video URLs (.mp4, .webm, .ogg)
-  - Solid colors (hex codes, e.g., #FF0000)
-- **Visual Effects**:
-  - Overlay opacity (0-0.8)
-  - Background blur (0-20px)
+
+-   **Type Selection**: Choose between animated gradients or custom backgrounds
+-   **Gradient Themes**: 8 preset animated gradients
+-   **Custom Backgrounds**: Support for:
+    -   Image URLs (.jpg, .png, .gif, .webp)
+    -   Video URLs (.mp4, .webm, .ogg)
+    -   Solid colors (hex codes, e.g., #FF0000)
+-   **Visual Effects**:
+    -   Overlay opacity (0-0.8)
+    -   Background blur (0-20px)
 
 ### Quick Links Management
-- Add, edit, and remove website shortcuts
-- Predefined defaults (Reddit, GitHub, YouTube)
-- Drag-and-drop organization (planned)
-- Export/import functionality (planned)
+
+-   Add, edit, and remove website shortcuts
+-   Predefined defaults (Reddit, GitHub, YouTube)
+-   Drag-and-drop organization (planned)
+-   Export/import functionality (planned)
 
 ## V. Development
 
 ### Building from Source
 ```bash
-git clone https://github.com/StyingDev/StyTab.git
-cd StyTab
+git clone https://github.com/StyingDev/StyTab.gitcd StyTab
 ```
 
 #### Firefox Installation:
-1. Navigate to `about:debugging`
-2. Click "This Firefox" (or your Firefox fork)
-3. Select "Load Temporary Add-on"
-4. Choose the `manifest.json` file in the StyTab folder
 
+1.  Navigate to `about:debugging`
+2.  Click "This Firefox" (or your Firefox fork)
+3.  Select "Load Temporary Add-on"
+4.  Choose the `manifest.json` file in the StyTab folder
 
 ### Project Structure
 ```
@@ -130,7 +147,6 @@ StyTab/
 ├── startpage.html     # Main interface
 └── popup.html         # Extension popup
 ```
-
 
 ## VI. License
 

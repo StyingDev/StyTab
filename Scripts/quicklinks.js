@@ -25,6 +25,22 @@ document.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem("predefinedLinks", true);
     }
 
+    // Only allow http(s) links — without this, a pasted "javascript:..." URL
+    // would be stored verbatim and rendered as a live, clickable href.
+    function normalizeLinkUrl(raw) {
+        let url = raw.trim();
+        if (!/^[a-zA-Z][a-zA-Z\d+\-.]*:\/\//.test(url)) {
+            url = `https://${url}`;
+        }
+        try {
+            const parsed = new URL(url);
+            if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return null;
+            return parsed.href;
+        } catch {
+            return null;
+        }
+    }
+
     let editingIndex = null;
 
     function startEdit(index) {
@@ -176,8 +192,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     addLinkButton.addEventListener("click", () => {
         const name = quicklinkNameInput.value.trim();
-        const url  = quicklinkUrlInput.value.trim();
-        if (!name || !url) return;
+        const rawUrl = quicklinkUrlInput.value.trim();
+        if (!name || !rawUrl) return;
+
+        const url = normalizeLinkUrl(rawUrl);
+        if (!url) {
+            quicklinkUrlInput.focus();
+            return;
+        }
 
         if (editingIndex !== null) {
             const quickLinks = JSON.parse(localStorage.getItem("quickLinks")) || [];
