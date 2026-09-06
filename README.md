@@ -2,7 +2,7 @@
 
 StyTab is a 'minimalist' new tab page that gives you quick links, weather, and a search bar (personally not a big fan of it) and whatever else it has
 
-![Version](https://img.shields.io/badge/version-1.5.7-blue)  
+![Version](https://img.shields.io/badge/version-1.5.8-blue)  
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 | Browser | Download |

@@ -2,8 +2,7 @@
   display: none;
 }
 
-/* Unified pill: icon, input and submit button share one glass surface
-   instead of two separate floating controls. */
+/* one pill, not two floating controls */
 .search-box #search-form {
   display: flex;
   align-items: center;

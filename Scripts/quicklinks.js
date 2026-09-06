@@ -25,8 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem("predefinedLinks", true);
     }
 
-    // Only allow http(s) links — without this, a pasted "javascript:..." URL
-    // would be stored verbatim and rendered as a live, clickable href.
+    // only http(s), blocks javascript: links being saved as a "link"
     function normalizeLinkUrl(raw) {
         let url = raw.trim();
         if (!/^[a-zA-Z][a-zA-Z\d+\-.]*:\/\//.test(url)) {

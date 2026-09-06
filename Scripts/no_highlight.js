@@ -4,9 +4,7 @@ function disableTextSelection() {
     document.body.style.msUserSelect = 'none';
     document.body.style.mozUserSelect = 'none';
 
-    // Keep the "no accidental drag-highlight" behavior for chrome (icons,
-    // labels, buttons) but let people still select/copy actual widget
-    // content — the clock, weather summary, greeting, and quick link text.
+    // still selectable: actual content, not just chrome
     const selectable = document.querySelectorAll(
         'input, textarea, #clock, #greeting-display, #weather-widget, .quick-links a, .quick-links-sidebar a'
     );

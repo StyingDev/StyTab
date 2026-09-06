@@ -31,9 +31,7 @@ h1 {
   line-height: 1.2;
 }
 
-/* Lighten default placeholder text (browsers default to a dull grey
-   that reads muddy against the frosted-glass inputs) so it stays legible
-   but still visually distinct from real input text. */
+/* default placeholder grey is muddy on the glass inputs, lighten it */
 input::placeholder,
 textarea::placeholder {
   color: rgba(255, 255, 255, 0.55);

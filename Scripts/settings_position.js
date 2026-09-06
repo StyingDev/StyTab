@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "clock":               { x: 50, y: 50 },
     "search-box":          { x: 50, y: 70 },
     "quick-links-section": { x: 50, y: 60 },
-    "weather-widget":      { x: 3.5, y: 5 },
+    "weather-widget":      { x: 0, y: 0 },
     "spotify-widget":      { x: 10, y: 88 },
   };
 
@@ -65,6 +65,20 @@ document.addEventListener("DOMContentLoaded", function () {
     "bottom-right":  (W, H) => [W,     H    ],
   };
 
+  // Which corner/edge of the box the anchor point actually pins - a "left"
+  // widget only grows rightward as content resizes, "center" grows both ways.
+  const ANCHOR_FRAC = {
+    "top-left":      [0,   0  ],
+    "top-center":    [0.5, 0  ],
+    "top-right":     [1,   0  ],
+    "center-left":   [0,   0.5],
+    "center":        [0.5, 0.5],
+    "center-right":  [1,   0.5],
+    "bottom-left":   [0,   1  ],
+    "bottom-center": [0.5, 1  ],
+    "bottom-right":  [1,   1  ],
+  };
+
   function nearestAnchor(cx, cy, W, H) {
     let best = null, bestDist = Infinity;
     for (const [name, fn] of Object.entries(ANCHORS)) {
@@ -85,13 +99,21 @@ document.addEventListener("DOMContentLoaded", function () {
     return { anchor, dx: cx - ax, dy: cy - ay, scale: typeof p.scale === "number" ? p.scale : 1 };
   }
 
+  // transform-origin has to match the anchor or scale() grows from dead
+  // center instead of the pinned corner - resize used to fight itself.
+  function applyAnchorStyles(wrapper, anchor, scale) {
+    const [fx, fy] = ANCHOR_FRAC[anchor] || ANCHOR_FRAC.center;
+    wrapper.style.transformOrigin = `${fx * 100}% ${fy * 100}%`;
+    wrapper.style.transform = `translate(${-fx * 100}%, ${-fy * 100}%) scale(${scale})`;
+  }
+
   function applyPosition(id, anchor, dx, dy, scale = 1) {
     const wrapper = getWrapper(id);
     wrapper.dataset.anchor = anchor;
     wrapper.dataset.dx     = dx;
     wrapper.dataset.dy     = dy;
     wrapper.dataset.scale  = scale;
-    wrapper.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    applyAnchorStyles(wrapper, anchor, scale);
     const native = document.getElementById(id);
     if (native && native.parentNode !== wrapper) {
       if (STYLE_OVERRIDES[id]) Object.assign(native.style, STYLE_OVERRIDES[id]);
@@ -125,10 +147,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!ANCHORS[anchor]) return;
     const W = window.innerWidth, H = window.innerHeight, m = 4;
     const [ax, ay] = ANCHORS[anchor](W, H);
+    const [fx, fy] = ANCHOR_FRAC[anchor];
     const rect = wrapper.getBoundingClientRect();
-    const hw = rect.width / 2, hh = rect.height / 2;
-    const cx = clamp(ax + dx, hw + m, W - hw - m);
-    const cy = clamp(ay + dy, hh + m, H - hh - m);
+    const w = rect.width, h = rect.height;
+    const cx = clamp(ax + dx, m + fx * w, W - m - (1 - fx) * w);
+    const cy = clamp(ay + dy, m + fy * h, H - m - (1 - fy) * h);
     wrapper.style.left = `${(cx / W) * 100}%`;
     wrapper.style.top  = `${(cy / H) * 100}%`;
   }
@@ -191,6 +214,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadPositions();
   window.addEventListener("resize", scheduleReflow);
+
+  // re-clamp on content resize too, not just window resize (greeting text length varies a lot)
+  const contentResizeObserver = new ResizeObserver(scheduleReflow);
+  Object.keys(buildRegistry()).forEach(id => {
+    const native = document.getElementById(id);
+    if (native) contentResizeObserver.observe(native);
+  });
 
   let initialReflowDone = false;
   function initialReflow() {
@@ -329,22 +359,30 @@ document.addEventListener("DOMContentLoaded", function () {
         let cx = (startPx / 100) * window.innerWidth  + (client.clientX - startMx);
         let cy = (startPy / 100) * window.innerHeight + (client.clientY - startMy);
 
+        const r = native.getBoundingClientRect();
+        const [fx, fy] = ANCHOR_FRAC[wrapper.dataset.anchor] || ANCHOR_FRAC.center;
+        const left = cx - fx * r.width,  right  = cx + (1 - fx) * r.width;
+        const top  = cy - fy * r.height, bottom = cy + (1 - fy) * r.height;
+
         if (snapEnabled) {
-          const r = native.getBoundingClientRect();
-          const hw = r.width / 2, hh = r.height / 2;
-          const sx = bestSnap([cx - hw, cx, cx + hw], targets.xs);
-          const sy = bestSnap([cy - hh, cy, cy + hh], targets.ys);
+          const sx = bestSnap([left, cx, right], targets.xs);
+          const sy = bestSnap([top, cy, bottom], targets.ys);
           if (sx) cx += sx.delta;
           if (sy) cy += sy.delta;
 
-          if (sx) setGuide("v", sx.pos, Math.min(sx.min, cy - hh), Math.max(sx.max, cy + hh));
+          if (sx) setGuide("v", sx.pos, Math.min(sx.min, top), Math.max(sx.max, bottom));
           else    setGuide("v", null);
-          if (sy) setGuide("h", sy.pos, Math.min(sy.min, cx - hw), Math.max(sy.max, cx + hw));
+          if (sy) setGuide("h", sy.pos, Math.min(sy.min, left), Math.max(sy.max, right));
           else    setGuide("h", null);
         }
 
-        wrapper.style.left = `${clamp((cx / window.innerWidth)  * 100, 1, 99)}%`;
-        wrapper.style.top  = `${clamp((cy / window.innerHeight) * 100, 1, 99)}%`;
+        // same edge-aware clamp as reflowWidget, not a flat %
+        const m = 4;
+        cx = clamp(cx, m + fx * r.width,  window.innerWidth  - m - (1 - fx) * r.width);
+        cy = clamp(cy, m + fy * r.height, window.innerHeight - m - (1 - fy) * r.height);
+
+        wrapper.style.left = `${(cx / window.innerWidth)  * 100}%`;
+        wrapper.style.top  = `${(cy / window.innerHeight) * 100}%`;
         syncShield();
       }
 
@@ -381,7 +419,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const client = e.touches ? e.touches[0] : e;
         const dist = Math.hypot(client.clientX - rsCx, client.clientY - rsCy);
         const scale = clamp(rsStartScale * (dist / rsStartDist), SCALE_MIN, SCALE_MAX);
-        wrapper.style.transform = `translate(-50%, -50%) scale(${scale})`;
+        applyAnchorStyles(wrapper, wrapper.dataset.anchor, scale);
         wrapper.dataset.scale = scale;
         syncShield();
       }
@@ -488,19 +526,23 @@ document.addEventListener("DOMContentLoaded", function () {
       const reg = buildRegistry();
       Object.entries(reg).forEach(([id, meta]) => {
         const wrapper = getWrapper(id);
-        const xPct = parseFloat(wrapper.style.left);
-        const yPct = parseFloat(wrapper.style.top);
+        const native  = document.getElementById(id);
         const scale = parseFloat(wrapper.dataset.scale) || 1;
-        if (isNaN(xPct) || isNaN(yPct)) return;
+        if (!native) return;
+
+        // measure the real box, don't trust wrapper.style.left/top - it's relative to the OLD anchor
+        const rect = native.getBoundingClientRect();
+        if (rect.width === 0 && rect.height === 0) return;
+
         const W = window.innerWidth, H = window.innerHeight;
-        const cx = (xPct / 100) * W;
-        const cy = (yPct / 100) * H;
-        const anchor = nearestAnchor(cx, cy, W, H);
+        const anchor = nearestAnchor(rect.left + rect.width / 2, rect.top + rect.height / 2, W, H);
+        const [fx, fy] = ANCHOR_FRAC[anchor];
+        const cx = rect.left + fx * rect.width;
+        const cy = rect.top  + fy * rect.height;
         const [ax, ay] = ANCHORS[anchor](W, H);
         const dx = cx - ax, dy = cy - ay;
-        wrapper.dataset.anchor = anchor;
-        wrapper.dataset.dx     = dx;
-        wrapper.dataset.dy     = dy;
+
+        applyPosition(id, anchor, dx, dy, scale); // updates transform-origin for the new anchor too
         localStorage.setItem(meta.key, JSON.stringify({ anchor, dx, dy, scale }));
       });
     } else {

@@ -2,8 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const timeFormatSelect = document.getElementById("time-format");
     const saveButton = document.getElementById("save-settings");
 
-    // Clock visibility (toggle-time / #clock display) is owned by settings_visibility.js —
-    // this file only owns the 12/24-hour format.
+    // clock visibility lives in settings_visibility.js, not here
     const existingTimeFormat = localStorage.getItem("timeFormat") || "12";
     timeFormatSelect.value = existingTimeFormat;
 

@@ -122,10 +122,7 @@ input:checked + .slider:before { transform: translateX(78px); }
 .settings-sidebar .or-divider { text-align: center; margin-bottom: 10px; }
 .settings-sidebar .or-divider span { color: #888; }
 
-/* Sidebar/modal panel titles ("Settings", "QuickLinks", "Weather Settings") had
-   no sizing of their own and fell back to the browser's default h2, which
-   didn't sit in any real hierarchy next to the 16px section headers below
-   them or the 48px greeting above the page. */
+/* panel titles, was unstyled default h2 before */
 .settings-sidebar h2,
 .quicklinks-sidebar h2 {
   font-size: 20px;

@@ -3,8 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const searchEngineSelect = document.getElementById("search-engine");
     const saveButton = document.getElementById("save-settings");
 
-    // Search bar visibility (toggle-search / .search-box display) is owned
-    // by settings_visibility.js — this file only owns the engine choice.
+    // search bar visibility lives in settings_visibility.js, not here
     const existingSearchEngine = localStorage.getItem("searchEngine");
     if (existingSearchEngine) {
         searchEngineSelect.value = existingSearchEngine;

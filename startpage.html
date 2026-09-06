@@ -89,7 +89,7 @@
         <img id="spotify-album-art" class="spotify-album-art" alt="" style="display: none;">
         <div class="spotify-meta">
           <div id="spotify-title" class="spotify-title">Nothing playing</div>
-          <div id="spotify-artist" class="spotify-artist">—</div>
+          <div id="spotify-artist" class="spotify-artist">-</div>
         </div>
       </div>
       <!-- Progress bar stays visible -->
@@ -208,8 +208,31 @@
       </summary>
       
       <div class="settings-section-content">
-        <label for="greeting">Custom Greeting:</label>
-        <input type="text" id="greeting" placeholder="Hello!">
+        <label for="greeting-mode">Greeting Style:</label>
+        <select id="greeting-mode">
+          <option value="smart">Smart (time &amp; day aware)</option>
+          <option value="custom">Custom text</option>
+        </select>
+
+        <div id="greeting-smart-options">
+          <label for="greeting-name">Your Name (optional):</label>
+          <input type="text" id="greeting-name" placeholder="e.g. Sty" autocomplete="off">
+
+          <div class="toggle-container">
+            <label for="greeting-include-weather">Weather-based greetings:</label>
+            <label class="switch">
+              <input type="checkbox" id="greeting-include-weather" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <small>Occasionally swaps in a line matching current conditions (e.g. rainy, hot, clear), does nothing until Weather is set up</small>
+        </div>
+
+        <div id="greeting-custom-options" style="display: none;">
+          <label for="greeting">Custom Greeting:</label>
+          <input type="text" id="greeting" placeholder="Hello!">
+          <small>Tip: use {name} to insert your name</small>
+        </div>
 
         <label for="text-color">Custom Text Color (Hex):</label>
         <input type="text" id="text-color" placeholder="#FFFFFF">
