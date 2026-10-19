@@ -58,6 +58,35 @@
   transform: scale(1.2);
 }
 
+/* draggable origin point - the spot that stays pinned as content resizes */
+.lge-origin-handle {
+  position: fixed;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;      /* center on its left/top coords */
+  border-radius: 50%;
+  background: #fdcb6e;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  cursor: move;
+  pointer-events: auto;
+  z-index: 9004;
+  transition: transform 0.12s ease;
+}
+
+.lge-origin-handle::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.lge-origin-handle:hover,
+.lge-origin-handle.lge-origin-dragging {
+  transform: scale(1.35);
+}
+
 .layout-widget.lge-draggable:hover {
   z-index: 10;
 }
