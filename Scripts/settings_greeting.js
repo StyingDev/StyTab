@@ -8,6 +8,12 @@ document.addEventListener("DOMContentLoaded", function() {
         { text: "Hey there",                 withName: "Hey there, {name}",                 days: [], timeranges: [6, 12] },
         { text: "Coffee time?",              withName: "Coffee time, {name}?",              days: [], timeranges: [6, 12] },
         { text: "Greetings, whoever you are", withName: null,                               days: [], timeranges: [6, 12] },
+        { text: "Rise and shine",            withName: "Rise and shine, {name}",            days: [], timeranges: [6, 12] },
+        { text: "Morning!",                  withName: "Morning, {name}!",                  days: [], timeranges: [6, 12] },
+        { text: "Off to a good start?",      withName: "Off to a good start, {name}?",      days: [], timeranges: [6, 12] },
+        { text: "Ready for the day?",        withName: "Ready for the day, {name}?",        days: [], timeranges: [6, 12] },
+        { text: "Fresh start",              withName: null,                                days: [], timeranges: [6, 12] },
+        { text: "Top of the morning",        withName: "Top of the morning, {name}",        days: [], timeranges: [6, 12] },
 
         // Weekday/weekend flavor (morning)
         { text: "Happy Monday",              withName: "Happy Monday, {name}",              days: ["Monday"],    timeranges: [6, 12] },
@@ -27,17 +33,34 @@ document.addEventListener("DOMContentLoaded", function() {
         { text: "Hi, how are you?",          withName: "Hi {name}, how are you?",           days: [], timeranges: [12, 17] },
         { text: "What's new?",               withName: "What's new, {name}?",               days: [], timeranges: [12, 17] },
         { text: "Back at it!",               withName: "Back at it, {name}",                days: [], timeranges: [12, 17] },
+        { text: "Hope your day's going well", withName: "Hope your day's going well, {name}", days: [], timeranges: [12, 17] },
+        { text: "Afternoon!",                withName: "Afternoon, {name}!",                days: [], timeranges: [12, 17] },
+        { text: "Getting things done?",      withName: "Getting things done, {name}?",      days: [], timeranges: [12, 17] },
+        { text: "Midday check-in",           withName: null,                                days: [], timeranges: [12, 17] },
+        { text: "What are you working on?",  withName: "What are you working on, {name}?",   days: [], timeranges: [12, 17] },
 
         // Evening (5pm - 9pm), any day
         { text: "Good evening",              withName: "Good evening, {name}",              days: [], timeranges: [17, 21] },
         { text: "Evening",                   withName: "Evening, {name}",                   days: [], timeranges: [17, 21] },
         { text: null,                        withName: "{name} returns!",                   days: [], timeranges: [17, 21] },
         { text: "How was your day?",         withName: "How was your day, {name}?",         days: [], timeranges: [17, 21] },
+        { text: "Winding down?",             withName: "Winding down, {name}?",             days: [], timeranges: [17, 21] },
+        { text: "How'd it go today?",        withName: "How'd it go today, {name}?",        days: [], timeranges: [17, 21] },
+        { text: "Done for the day?",         withName: "Done for the day, {name}?",         days: [], timeranges: [17, 21] },
+        { text: null,                        withName: "Welcome back, {name}",              days: [], timeranges: [17, 21] },
+        { text: "Relax, you've earned it",   withName: "Relax {name}, you've earned it",    days: [], timeranges: [17, 21] },
 
         // Late night (9pm - 6am), any day - wraps past midnight
         { text: "How's it going?",           withName: "How's it going, {name}?",           days: [], timeranges: [21, 6] },
         { text: "Hello, night owl",          withName: null,                                days: [], timeranges: [21, 6] },
         { text: "What's on your mind tonight?", withName: null,                             days: [], timeranges: [21, 6] },
+        { text: "Burning the midnight oil?",   withName: "Burning the midnight oil, {name}?", days: [], timeranges: [21, 6] },
+        { text: "Still up?",                   withName: "Still up, {name}?",                 days: [], timeranges: [21, 6] },
+        { text: "Can't sleep?",                withName: null,                                days: [], timeranges: [21, 6] },
+        { text: "Good evening",                withName: "Good evening, {name}",              days: [], timeranges: [21, 6] },
+        { text: "The quiet hours",             withName: null,                                days: [], timeranges: [21, 6] },
+        { text: "Working late tonight?",       withName: "Working late tonight, {name}?",     days: [], timeranges: [21, 6] },
+        { text: "Welcome back, night owl",     withName: "Welcome back, {name}",              days: [], timeranges: [21, 6] },
     ];
 
     // Not time/day gated - matched by condition tag, see parseWeatherTags.
