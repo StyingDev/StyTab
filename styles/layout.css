@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  width: max-content;
   max-width: 90vw;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -252,15 +253,11 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  border-radius: 24px;
-  padding: 10px 14px;
-  z-index: 9000;
+  z-index: 9010;
 
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.35s cubic-bezier(0.22, 0.68, 0, 1.2), opacity 0.2s ease;
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.22, 0.68, 0, 1.2),
+              bottom 0.25s ease, opacity 0.2s ease;
   font-family: inherit;
 }
 
@@ -268,9 +265,79 @@
   transform: translateX(-50%) translateY(0);
 }
 
-#lge-pill.lge-pill-dodge {
-  opacity: 0.1;
-  pointer-events: none;
+#lge-pill.lge-pill-collapsed {
+  bottom: 8px;
+}
+
+#lge-pill-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border-radius: 24px;
+  padding: 10px 14px;
+  pointer-events: auto;
+
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.2s ease;
+}
+
+.lge-pill-handle {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.lge-pill-handle-grip {
+  display: inline-block;
+  width: 26px;
+  height: 4px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.lge-pill-handle-text {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+#lge-pill.lge-pill-collapsed #lge-pill-inner {
+  display: none;
+}
+
+#lge-pill.lge-pill-collapsed .lge-pill-handle {
+  display: inline-flex;
+  animation: lge-pill-pop 0.22s ease both;
+}
+
+#lge-pill.lge-pill-collapsed.lge-pill-expanded #lge-pill-inner {
+  display: flex;
+  transform-origin: bottom center;
+  animation: lge-pill-open 0.28s cubic-bezier(0.22, 0.68, 0, 1.2) both;
+}
+
+#lge-pill.lge-pill-collapsed.lge-pill-expanded.lge-pill-closing #lge-pill-inner {
+  animation: lge-pill-close 0.2s ease both;
+}
+
+@keyframes lge-pill-open {
+  from { opacity: 0; transform: translateY(14px) scale(0.92); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+@keyframes lge-pill-close {
+  from { opacity: 1; transform: translateY(0)    scale(1); }
+  to   { opacity: 0; transform: translateY(14px) scale(0.92); }
+}
+
+@keyframes lge-pill-pop {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 #lge-pill-label {

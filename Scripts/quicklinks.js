@@ -12,6 +12,71 @@ document.addEventListener("DOMContentLoaded", function() {
     const gitHubUrl = "https://github.com/StyingDev/StyTab";
     githubLink.addEventListener("click", () => window.open(gitHubUrl, "_blank"));
 
+    const wrapToggle = document.getElementById("toggle-quicklinks-wrap");
+    const saveButton = document.getElementById("save-settings");
+
+    function applyQuickLinksWrap(wrap) {
+        quickLinksSection.classList.toggle("no-wrap", !wrap);
+        updateQuickLinksScrollState();
+    }
+
+    function updateQuickLinksScrollState() {
+        const scrollable = quickLinksSection.scrollWidth > quickLinksSection.clientWidth + 1;
+        quickLinksSection.classList.toggle("ql-scrollable", scrollable);
+    }
+
+    function enableQuickLinksScroll(el) {
+        let down = false, startX = 0, startScroll = 0, moved = false;
+
+        el.addEventListener("wheel", e => {
+            if (el.scrollWidth <= el.clientWidth) return;
+            el.scrollLeft += (e.deltaY || e.deltaX);
+            e.preventDefault();
+        }, { passive: false });
+
+        el.addEventListener("mousedown", e => {
+            if (el.scrollWidth <= el.clientWidth) return;
+            down = true;
+            moved = false;
+            startX = e.pageX;
+            startScroll = el.scrollLeft;
+            el.classList.add("ql-grabbing");
+            e.preventDefault();
+        });
+
+        window.addEventListener("mousemove", e => {
+            if (!down) return;
+            const dx = e.pageX - startX;
+            if (Math.abs(dx) > 3) moved = true;
+            el.scrollLeft = startScroll - dx;
+        });
+
+        window.addEventListener("mouseup", () => {
+            if (!down) return;
+            down = false;
+            el.classList.remove("ql-grabbing");
+        });
+
+        el.addEventListener("click", e => {
+            if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+        }, true);
+    }
+
+    enableQuickLinksScroll(quickLinksSection);
+    window.addEventListener("resize", updateQuickLinksScrollState);
+
+    const wrapEnabled = localStorage.getItem("quickLinksWrap") !== "false";
+    if (wrapToggle) wrapToggle.checked = wrapEnabled;
+    applyQuickLinksWrap(wrapEnabled);
+
+    if (saveButton) {
+        saveButton.addEventListener("click", () => {
+            const wrap = wrapToggle ? wrapToggle.checked : true;
+            localStorage.setItem("quickLinksWrap", wrap);
+            applyQuickLinksWrap(wrap);
+        });
+    }
+
     const predefinedLinks = [
         { name: "Reddit",  url: "https://www.reddit.com"  },
         { name: "GitHub",  url: "https://www.github.com"  },
@@ -169,8 +234,11 @@ document.addEventListener("DOMContentLoaded", function() {
             const pill = document.createElement("a");
             pill.href = link.url;
             pill.textContent = link.name;
+            pill.draggable = false;
             quickLinksSection.appendChild(pill);
         });
+
+        requestAnimationFrame(updateQuickLinksScrollState);
     }
 
     function saveQuickLinks(name, url) {

@@ -10,6 +10,31 @@
   box-sizing: border-box;
 }
 
+.quick-links.no-wrap {
+  flex-wrap: nowrap;
+  max-width: 90vw;
+  overflow-x: auto;
+  justify-content: flex-start;
+  scrollbar-width: none;
+}
+
+.quick-links.no-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.quick-links.ql-scrollable {
+  cursor: grab;
+}
+
+.quick-links.ql-grabbing {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.quick-links.no-wrap a {
+  user-select: none;
+}
+
 .quick-links a {
   text-decoration: none;
   color: #fff;
