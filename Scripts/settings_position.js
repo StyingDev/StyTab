@@ -179,15 +179,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function deriveAllAuto() {
-    if (dragActive) return;
-    document.querySelectorAll(".layout-widget").forEach(wrapper => {
-      if ((wrapper.dataset.mode || DEFAULT_MODE) !== "auto") return;
-      const native = document.getElementById(wrapper.id.replace(/^lw-/, ""));
-      deriveAutoOrigin(wrapper, native);
-    });
-  }
-
   let dragActive = false;
   let snapshot   = {};
   const cleanups  = [];
@@ -210,14 +201,45 @@ document.addEventListener("DOMContentLoaded", function () {
     syncAllShields();
   }
 
-  function dodgePill(rect) {
+  function measurePill() {
     if (!pillEl) return;
-    const p = pillEl.getBoundingClientRect();
-    const pad = 14;
-    const overlap =
-      rect.right > p.left - pad && rect.left < p.right + pad &&
-      rect.bottom > p.top - pad && rect.top < p.bottom + pad;
-    pillEl.classList.toggle("lge-pill-dodge", overlap);
+    const inner = pillEl.querySelector("#lge-pill-inner");
+    if (!inner) return;
+    const r = inner.getBoundingClientRect();
+    if (r.width)  pillW = r.width;
+    if (r.height) pillH = r.height;
+  }
+
+  function updatePillCollapse() {
+    if (!pillEl) return;
+    if (!pillW || !pillH) measurePill();
+    const W = window.innerWidth, H = window.innerHeight, pad = 14;
+    const left = W / 2 - pillW / 2, right = W / 2 + pillW / 2;
+    const bottom = H - 28, top = bottom - pillH;
+    let overlap = false;
+    document.querySelectorAll(".layout-widget").forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 && r.height === 0) return;
+      if (r.right > left - pad && r.left < right + pad &&
+          r.bottom > top - pad && r.top < bottom + pad) overlap = true;
+    });
+    pillEl.classList.toggle("lge-pill-collapsed", overlap);
+    if (!overlap) pillEl.classList.remove("lge-pill-expanded", "lge-pill-closing");
+  }
+
+  let islandCloseTimer = null;
+  function closeIsland() {
+    if (!pillEl || !pillEl.classList.contains("lge-pill-expanded")) return;
+    if (pillEl.classList.contains("lge-pill-closing")) return;
+    const el = pillEl;
+    const inner = el.querySelector("#lge-pill-inner");
+    el.classList.add("lge-pill-closing");
+    const finish = () => {
+      clearTimeout(islandCloseTimer);
+      el.classList.remove("lge-pill-expanded", "lge-pill-closing");
+    };
+    if (inner) inner.addEventListener("animationend", finish, { once: true });
+    islandCloseTimer = setTimeout(finish, 260);
   }
 
   const snapFrac = f => {
@@ -225,8 +247,11 @@ document.addEventListener("DOMContentLoaded", function () {
     return f;
   };
 
+  const SEP_OVERLAP_Y = 14;
+  const SEP_OVERLAP_X = 28;
+
   function deoverlap() {
-    const GAP = 6, H = window.innerHeight;
+    const H = window.innerHeight;
     const items = Array.from(document.querySelectorAll(".layout-widget"))
       .map(el => ({ el, r: el.getBoundingClientRect() }))
       .filter(it => it.r.width > 0 && it.r.height > 0)
@@ -237,22 +262,28 @@ document.addEventListener("DOMContentLoaded", function () {
       let minTop = -Infinity;
       for (let j = 0; j < i; j++) {
         const b = items[j];
-        const overlapX = a.r.right > b.r.left && a.r.left < b.r.right;
-        if (overlapX) minTop = Math.max(minTop, b.r.bottom + GAP);
+        const overlapX = Math.min(a.r.right, b.r.right) - Math.max(a.r.left, b.r.left);
+        if (overlapX > SEP_OVERLAP_X)
+          minTop = Math.max(minTop, b.r.bottom - SEP_OVERLAP_Y);
       }
       if (minTop > -Infinity && a.r.top < minTop) {
-        const centerPx = a.r.top + a.r.height / 2 + (minTop - a.r.top);
-        a.el.style.top = `${(centerPx / H) * 100}%`;
+        const oy = parseFloat(a.el.dataset.oy);
+        const topPx = minTop + (isFinite(oy) ? oy : 0.5) * a.r.height;
+        a.el.style.top = `${(topPx / H) * 100}%`;
         a.r = a.el.getBoundingClientRect();
       }
     }
+  }
+
+  function clampAll() {
+    document.querySelectorAll(".layout-widget").forEach(reflowWidget);
   }
 
   let reflowScheduled = false;
   function reflowAll() {
     reflowScheduled = false;
     if (dragActive) return;
-    document.querySelectorAll(".layout-widget").forEach(reflowWidget);
+    clampAll();
     deoverlap();
   }
   function scheduleReflow() {
@@ -267,9 +298,6 @@ document.addEventListener("DOMContentLoaded", function () {
     winReflowScheduled = true;
     requestAnimationFrame(() => {
       winReflowScheduled = false;
-      if (dragActive) return;
-      reflowAll();
-      deriveAllAuto();
       reflowAll();
     });
   }
@@ -287,8 +315,6 @@ document.addEventListener("DOMContentLoaded", function () {
   function initialReflow() {
     if (initialReflowDone) return;
     initialReflowDone = true;
-    reflowAll();
-    deriveAllAuto();
     reflowAll();
   }
 
@@ -358,6 +384,7 @@ document.addEventListener("DOMContentLoaded", function () {
       positionOrigin(origin, native, wrapper);
       if (placeMenu) placeMenu();
     });
+    updatePillCollapse();
   }
 
   function isHidden(el) {
@@ -610,7 +637,7 @@ document.addEventListener("DOMContentLoaded", function () {
         wrapper.style.top  = `${py}%`;
         applyOriginStyles(wrapper, ox, oy, parseFloat(wrapper.dataset.scale) || 1);
         syncShield();
-        dodgePill(native.getBoundingClientRect());
+        updatePillCollapse();
       }
 
       function onUp() {
@@ -618,7 +645,7 @@ document.addEventListener("DOMContentLoaded", function () {
         shield.classList.remove("lge-shield-dragging");
         setGuide("v", null);
         setGuide("h", null);
-        if (pillEl) pillEl.classList.remove("lge-pill-dodge");
+        updatePillCollapse();
         window.removeEventListener("mousemove", onMove);
         window.removeEventListener("mouseup",   onUp);
         window.removeEventListener("touchmove", onMove);
@@ -712,13 +739,13 @@ document.addEventListener("DOMContentLoaded", function () {
         applyOriginStyles(wrapper, parseFloat(wrapper.dataset.ox), parseFloat(wrapper.dataset.oy), scale);
         wrapper.dataset.scale = scale;
         syncShield();
-        dodgePill(native.getBoundingClientRect());
+        updatePillCollapse();
       }
 
       function onResizeUp() {
         wrapper.classList.remove("lge-dragging");
         shield.classList.remove("lge-shield-dragging");
-        if (pillEl) pillEl.classList.remove("lge-pill-dodge");
+        updatePillCollapse();
         window.removeEventListener("mousemove", onResizeMove);
         window.removeEventListener("mouseup",   onResizeUp);
         window.removeEventListener("touchmove", onResizeMove);
@@ -856,22 +883,50 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   let pillEl = null;
+  let pillW = 0, pillH = 0;
+  let pillDocDown = null;
 
   function showPill() {
     if (pillEl) return;
     pillEl = document.createElement("div");
     pillEl.id = "lge-pill";
     pillEl.innerHTML = `
-      <span id="lge-pill-label">Layout Edit Mode</span>
-      <div id="lge-pill-row">
-        <button class="lge-pill-btn lge-pill-toggle" id="lge-pill-snap"></button>
-        <button class="lge-pill-btn lge-pill-toggle" id="lge-pill-origin"></button>
-        <button class="lge-pill-btn" id="lge-pill-reset">Reset</button>
-        <button class="lge-pill-btn" id="lge-pill-cancel">Cancel</button>
-        <button class="lge-pill-btn" id="lge-pill-save">Save</button>
-      </div>`;
+      <div id="lge-pill-inner">
+        <span id="lge-pill-label">Layout Edit Mode</span>
+        <div id="lge-pill-row">
+          <button class="lge-pill-btn lge-pill-toggle" id="lge-pill-snap"></button>
+          <button class="lge-pill-btn lge-pill-toggle" id="lge-pill-origin"></button>
+          <button class="lge-pill-btn" id="lge-pill-reset">Reset</button>
+          <button class="lge-pill-btn" id="lge-pill-cancel">Cancel</button>
+          <button class="lge-pill-btn" id="lge-pill-save">Save</button>
+        </div>
+      </div>
+      <button class="lge-pill-btn lge-pill-handle" id="lge-pill-handle"
+              title="Show layout controls" aria-label="Show layout controls">
+        <span class="lge-pill-handle-grip"></span>
+        <span class="lge-pill-handle-text">Layout Edit Mode</span>
+      </button>`;
     document.body.appendChild(pillEl);
-    requestAnimationFrame(() => requestAnimationFrame(() => pillEl.classList.add("lge-pill-visible")));
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      pillEl.classList.add("lge-pill-visible");
+      measurePill();
+      updatePillCollapse();
+    }));
+
+    pillEl.querySelector("#lge-pill-handle").addEventListener("click", () => {
+      if (!pillEl.classList.contains("lge-pill-collapsed")) return;
+      if (pillEl.classList.contains("lge-pill-expanded")) closeIsland();
+      else pillEl.classList.add("lge-pill-expanded");
+    });
+
+    pillDocDown = (e) => {
+      if (!pillEl) return;
+      const t = e.target;
+      if (t && typeof t.closest === "function" && t.closest("#lge-pill")) return;
+      closeIsland();
+    };
+    document.addEventListener("mousedown",  pillDocDown, true);
+    document.addEventListener("touchstart", pillDocDown, true);
 
     const snapBtn = pillEl.querySelector("#lge-pill-snap");
     const renderSnap = () => {
@@ -924,6 +979,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function hidePill() {
     if (!pillEl) return;
+    clearTimeout(islandCloseTimer);
+    if (pillDocDown) {
+      document.removeEventListener("mousedown",  pillDocDown, true);
+      document.removeEventListener("touchstart", pillDocDown, true);
+      pillDocDown = null;
+    }
     const el = pillEl;
     pillEl = null;
     el.classList.remove("lge-pill-visible");
